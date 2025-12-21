@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}">
+    <title>{% block title %}register {%endblock%}</title>
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+</head>
+<body>
+    {%block content%}
+    <div class="register-main">
+
+        <div class="citklogo">
+            <img src="{{ url_for('static', filename = 'images/cit-logoo.png') }}" alt="">
+        </div>
+        <div class="register-box">
+            <div class="register2-box">
+                <h2>Welcome to CIT Kokrajhar</h2>
+        
+               <div class="input-group">
+                
+                    <input type="text" placeholder="Username">
+                    
+                </div>
+               
+
+                <div class="input-group">
+                    <input type="text" placeholder="Email">
+                </div>
+        
+                <div class="input-group">
+                    <input type="password" placeholder="Password">
+                </div>
+              
+                <div  class="input-group">
+                    <input type="password" placeholder="Confirm Password">
+                </div>
+               
+
+                <div class="input-group">
+                    <input type="password" placeholder="Hostel Name">
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Room no">
+                </div>
+        
+                <button class="register-btn">Register</button>
+        
+                <div class="account-link">
+                    <a href="{{ url_for('login') }}">Already have an account? Click here</a>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    {%endblock%}
+</body>
+</html>

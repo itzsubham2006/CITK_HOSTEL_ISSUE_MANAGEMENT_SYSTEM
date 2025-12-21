@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;;
+}
+
+
+.register-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+.register2-box{
+    width: 18vw;
+}
+
+.register-main{
+    height: 100vh;
+}
+
+.login-container {
+    width: 380px;
+    padding: 30px 25px;
+    border: 1px solid #dcdcdc;
+    text-align: center;
+}
+
+.citklogo {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.citklogo img{
+    width: 25vw;
+   
+}
+
+.register2-box h2 {
+    color: #2c5aa0;
+    font-size: 20px;
+    margin-bottom: 25px;
+    font-weight: 100;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 13px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #b0b0b0;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #4CAF2F;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #43a327;
+}
+
+.account-link {
+    margin-top: 20px;
+    font-size: 14px;
+
+}
+
+.account-link a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 550;
+}
+
+.account-link a:hover {
+    text-decoration: underline;
+}
