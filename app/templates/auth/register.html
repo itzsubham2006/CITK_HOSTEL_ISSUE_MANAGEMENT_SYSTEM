@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Register</title>
+</head>
+<body>
+{%block content%}
+<div class="register-main">
+
+    <div class="citklogo">
+        <img src="{{ url_for('static', filename='images/cit-logoo.png') }}" alt="">
+    </div>
+
+    <div class="register-box">
+        <div class="register2-box">
+            <h2>Welcome to CIT Kokrajhar</h2>
+
+            <form method="POST">
+                {{ form.hidden_tag() }}
+
+                <div class="input-group">
+                    {{ form.username(placeholder="Username") }}
+                     {% if form.username.errors %}
+                        {% for error in form.username.errors %}
+                        <p class="error-msg">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="input-group">
+                    {{ form.email(placeholder="Email") }}
+
+                    {%if form.email.errors %}
+                        {%for error in form.email.errors%}
+                        <p class="error-msg"> {{ error }}</p>
+                        {%endfor%}
+                    {%endif%}
+                </div>
+
+                <div class="input-group">
+                    {{ form.password(placeholder="Password") }}
+                    {% if form.password.errors%}
+                    {% for error in form.password.errors %}
+                    <p class="error-msg"> {{ error }}</p>
+                    {% endfor%}
+                    {%endif%}
+                </div>
+
+                <div class="input-group">
+                    {{ form.confirm_password(placeholder="Confirm Password") }}
+                     {% if form.confirm_password.errors%}
+                    {% for error in form.confirm_password.errors %}
+                    <p class="error-msg"> {{ error }}</p>
+                    {% endfor%}
+                    {%endif%}
+                </div>
+
+                <div class="input-group">
+                    {{ form.hostel(placeholder="Hostel Name") }}
+                </div>
+
+                <div class="input-group">
+                    {{ form.room_no(placeholder="Room No") }}
+                </div>
+
+                {{ form.submit(class="register-btn") }}
+            </form>
+
+            <div class="account-link">
+                <a href="{{ url_for('auth.login') }}">
+                    Already have an account? Click here
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+</body>
+</html>

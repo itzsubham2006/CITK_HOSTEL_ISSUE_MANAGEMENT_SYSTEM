@@ -93,3 +93,9 @@ input::placeholder {
 .account-link a:hover {
     text-decoration: underline;
 }
+
+.error-msg {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+}
