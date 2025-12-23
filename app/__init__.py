@@ -1,24 +1,28 @@
 from flask import Flask
 from .config import Config
-from .extensions import db, bcrypt
+from .extensions import db, bcrypt, login_manager
+from flask_migrate import Migrate
+
+migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+   
     db.init_app(app)
     bcrypt.init_app(app)
+    login_manager.init_app(app) 
+    migrate.init_app(app, db)
 
+   
     from .routes import auth_bp
-    # from .routes.admin_routes import admin_bp
-    # from .routes.students_routes import student_bp
+    from .routes.students_routes import students_bp
 
     app.register_blueprint(auth_bp)
-    # app.register_blueprint(admin_bp)
-    # app.register_blueprint(student_bp)
+    app.register_blueprint(students_bp)
 
     with app.app_context():
         db.create_all()
 
     return app
-

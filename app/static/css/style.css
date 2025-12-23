@@ -1,7 +1,10 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.body{
+    background-color: #f4f7f6;
 }
 
 
@@ -98,4 +101,132 @@ input::placeholder {
     color: red;
     font-size: 13px;
     margin-top: 4px;
+}
+
+
+
+
+/* ------------home page--------------------------- */
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+
+.top-bar {
+    background-color: #1b5e20; 
+    color: white;
+    font-size: 12px;
+    padding: 10px 0;
+}
+
+.top-right a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.branding-section {
+    background-color: white;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+   
+}
+
+.main-logo {
+    height: 80px;
+    margin-right: 20px;
+    
+}
+
+.main2-logo{
+    width: 50px;
+    position: absolute;
+    right: 30px;
+}
+
+.title-text h1 {
+    font-size: 20px;
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.title-text h2 {
+    font-size: 22px;
+    color: #111;
+    letter-spacing: 0.5px;
+    margin: 2px 0;
+    font-family: sans-serif;
+}
+
+.title-text p {
+    font-size: 14px;
+    color: #666;
+}
+
+
+.main-nav {
+    background-color: #2e7d32;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    /* transition: background 0.3s; */
+}
+
+.main-nav ul li a:hover {
+    background-color: #1b5e20;
+}
+
+
+.badge {
+    background-color: #d32f2f; 
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+
+.welcome-section {
+    background: white;
+    padding: 40px;
+    margin-top: 30px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.welcome-section h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
 }

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width: 600px; margin-top: 30px;">
+    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        <h2 style="color:#2e7d32; margin-bottom: 5px;">Report a Hostel Issue </h2>
+        <p style="color:#666; margin-bottom: 20px;"> Hostel: <strong>{{ current_user.hostel }}</strong>
+        </p>
+
+
+
+        <form method="POST"  enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div style="margin-bottom: 15px;">
+                {{ form.category.label(style="display:block; margin-bottom: 5px; font-weight: bold;") }}
+                {{ form.category(style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;") }}
+            </div>
+            <div style="margin-bottom: 15px;">
+                {{ form.description.label(style="display:block; margin-bottom: 5px; font-weight: bold;") }}
+                {{ form.description(style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; height: 150px;") }}
+            </div>
+            <div style="margin-bottom: 15px;">
+            {{ form.image.label(style="display:block; margin-bottom: 5px; font-weight: bold;") }}
+            {{ form.image(style="width: 100%;") }}
+            <small style="color:#777;">Upload image if available (jpg, png)</small>
+</div>
+
+            {{ form.submit(style="background: #2e7d32; color: white; border: none; padding: 12px 25px; border-radius: 4px; cursor: pointer; font-size: 16px;") }}
+        </form>
+    </div>
+</div>
+{% endblock %}

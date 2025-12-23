@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITK Hostel Issue Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-left">CITK | HOSTEL PORTAL</div>
+                <div class="top-right">
+                    <a href="#"><i class="fa-solid fa-user"></i> My Profile</a>
+                    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="branding-section">
+            <div class="container">
+                <div class="logo-area">
+                    <img src="{{ url_for('static', filename ='images/citk_logo.png')}}" alt="CITK Logo" class="main-logo">
+                    <div class="title-text">
+                        <h1>केन्द्रीय प्रौद्योगिकी संस्थान कोकराझार</h1>
+                        <h2>CITK HOSTEL ISSUE MANAGEMENT SYSTEM</h2>
+                        <p>Providing a seamless living experience for students.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="{{ url_for('auth.home') }}"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="{{ url_for('students.report_issue') }}">Report Issue</a></li>
+                    <li><a href="{{ url_for('students.my_complaints') }}">My Complaints</a></li>
+                    <li><a href="#">Hostel Rules</a></li>
+                    <li><a href="#">Hostel Wardens</a></li>
+                    <li><a href="#" class="badge-link">Notifications <span class="badge">3</span></a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% block content%}
+    <main class="container">
+        <section class="welcome-section">
+            <h3>Welcome to the Hostel Management Portal</h3>
+            <p>Select an option from the menu above or write to report a new maintenance or security issue.</p>
+        </section>
+    </main>
+    {%endblock%}
+
+</body>
+</html>
