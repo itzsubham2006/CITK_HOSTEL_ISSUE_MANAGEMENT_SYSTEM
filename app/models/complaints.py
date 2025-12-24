@@ -8,6 +8,9 @@ class Complaint(db.Model):
     status = db.Column(db.String(20), default='Pending')
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     image = db.Column(db.String(255), nullable=True)
+    
+  
+    hostel = db.Column(db.String(100), nullable=False)  #  NEW 
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 

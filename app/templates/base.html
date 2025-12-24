@@ -23,7 +23,7 @@
 
             <div class="top-right">
                 <a href="#"><i class="fa-solid fa-user"></i> My Profile</a>
-                <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                <a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </div>
         </div>
     </div>
@@ -52,6 +52,7 @@
                     <li><a href="#">Hostel Wardens</a></li>
                     <li><a href="#" class="badge-link">Notifications <span class="badge">3</span></a></li>
                     <li><a href="#">About</a></li>
+                    <li><a href="{{ url_for('students.dashboard')}}">My Dashboard</a></li>
                 </ul>
             </div>
         </nav>

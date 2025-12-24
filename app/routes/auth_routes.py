@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from ..forms import RegistrationForm, LoginForm
 from ..extensions import db, bcrypt
 from ..models.user import User
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 
 
 
@@ -73,3 +73,9 @@ def home():
 
 
 
+# --------------------logout_user---------------
+@auth_bp.route("/logout")
+def logout():
+    logout_user()
+    flash("Logged out successfully", "info")
+    return redirect(url_for("auth.login"))

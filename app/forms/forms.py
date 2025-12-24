@@ -26,10 +26,23 @@ class RegistrationForm(FlaskForm):
         validators=[DataRequired(), EqualTo('password')]
     )
 
-    hostel = StringField(
-        'Hostel Name',
+    # hostel = StringField(
+    #     'Hostel Name',
+    #     validators=[DataRequired()]
+    # )
+    
+    hostel = SelectField(
+        "Hostel",
+        choices=[
+            ("SNM", "SNM"),
+            ("SJ", "SJ"),
+            ("JD", "JD"),
+            ("BJ", "BJ"),
+            ("Bakhungri", "Bakhungri"),
+            ("Gambari", "Gambari"),
+        ],
         validators=[DataRequired()]
-    )
+    )   #new
 
     room_no = StringField(
         'Room No',

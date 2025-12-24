@@ -60,7 +60,8 @@ def report_issue():
             category=form.category.data,
             description=form.description.data,
             image=image_filename,
-            user_id=current_user.id
+            user_id=current_user.id,
+            hostel=current_user.hostel   #  auto
         )
 
         db.session.add(new_issue)
@@ -71,3 +72,17 @@ def report_issue():
 
     return render_template('student/report_issue.html', form=form)
 
+
+
+@students_bp.route("/dashboard")
+@login_required
+def dashboard():
+    hostel = current_user.hostel
+
+    complaints = Complaint.query.filter_by(hostel=hostel).all()
+
+    return render_template(
+        "student/dashboard.html",
+        complaints=complaints,
+        hostel=hostel
+    )
