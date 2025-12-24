@@ -1,52 +1,57 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-.body{
+
+body {
     background-color: #f4f7f6;
 }
 
-
-.register-box{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2%;
-}
-.register2-box{
-    width: 18vw;
+/*                       ----------------------------register.html------------------------- */
+.register-main {
+    min-height: 100vh;
 }
 
-.register-main{
-    height: 100vh;
-}
-
-.login-container {
-    width: 380px;
-    padding: 30px 25px;
-    border: 1px solid #dcdcdc;
-    text-align: center;
-}
-
+/* LOGO */
 .citklogo {
-    margin-top: 10px;
-    width: 100%;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
-.citklogo img{
-    width: 25vw;
-   
+
+.citklogo img {
+    width: 260px;
+}
+
+
+.register-box {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* FORM BOX */
+.register2-box {
+    width: 380px;
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 10px;
+    border: 1px solid #dcdcdc;
 }
 
 .register2-box h2 {
+    text-align: center;
     color: #2c5aa0;
     font-size: 20px;
     margin-bottom: 25px;
-    font-weight: 100;
+    font-weight: 500;
 }
 
+/* INPUTS */
 .input-group {
     margin-bottom: 15px;
 }
@@ -64,6 +69,7 @@ input::placeholder {
     color: #b0b0b0;
 }
 
+/* BUTTON */
 .register-btn {
     width: 100%;
     padding: 12px;
@@ -71,25 +77,26 @@ input::placeholder {
     background-color: #4CAF2F;
     border: none;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
 }
 
-.login-btn:hover {
+.register-btn:hover {
     background-color: #43a327;
 }
 
+/* ACCOUNT LINK */
 .account-link {
-    margin-top: 20px;
+    margin-top: 18px;
+    text-align: center;
     font-size: 14px;
-
 }
 
 .account-link a {
     text-decoration: none;
-    color: #333333;
+    color: #333;
     font-weight: 550;
 }
 
@@ -97,18 +104,104 @@ input::placeholder {
     text-decoration: underline;
 }
 
-.error-msg {
-    color: red;
-    font-size: 13px;
-    margin-top: 4px;
+
+/* ----------------------remember meee button------------------------------- */
+.remember-group {
+    display: flex;          
+    align-items: center;    
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+.remember-group input[type="checkbox"] {
+    width: auto;           
+    margin-right: 10px;     
+    cursor: pointer;
+}
+
+
+.remember-group label {
+    margin-bottom: 0;      
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
 }
 
 
 
 
-/* ------------home page--------------------------- */
 
 
+
+
+
+/* ERRORS */
+.error-msg {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+
+.info-panel {
+    width: 260px;
+    background-color: #2e7d32;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 18px;
+    font-size: 13px;
+}
+
+.info-panel h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.info-panel hr {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    margin-bottom: 10px;
+}
+
+.info-panel ul {
+    list-style: none;
+}
+
+.info-panel li {
+    margin-bottom: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.info-panel i {
+    font-size: 13px;
+}
+
+
+.info-note {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+
+@media (max-width: 768px) {
+    .register-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-panel {
+        width: 90%;
+    }
+}
+
+
+
+
+/*                                      ------------home page--------------------------- */
 
 .container {
     max-width: 1200px;
@@ -198,7 +291,7 @@ input::placeholder {
     padding: 15px 20px;
     font-size: 15px;
     font-weight: 500;
-    /* transition: background 0.3s; */
+    transition: background 0.3s;
 }
 
 .main-nav ul li a:hover {
@@ -229,4 +322,35 @@ input::placeholder {
 .welcome-section h3 {
     color: #2e7d32;
     margin-bottom: 10px;
+}
+
+
+/*                                   -----------------------------register_flash_message------------------- */
+
+.flash-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.flash {
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin: 8px auto;
+    width: 80%;
+    font-size: 14px;
+}
+
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Error */
+.flash-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }

@@ -35,6 +35,7 @@ class RegistrationForm(FlaskForm):
         'Room No',
         validators=[DataRequired()]
     )
+    
 
     submit = SubmitField('Sign up')
 
@@ -45,7 +46,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError(
                 'That username is already taken. Please choose another one.'
             )
-
+            
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:

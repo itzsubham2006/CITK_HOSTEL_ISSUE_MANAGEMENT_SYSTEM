@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, request
 from ..forms import RegistrationForm, LoginForm
 from ..extensions import db, bcrypt
 from ..models.user import User
-from flask_login import login_user
+from flask_login import login_user, current_user
 
 
 
@@ -42,6 +42,8 @@ def register():
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('auth.home'))
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -50,10 +52,12 @@ def login():
         if user and bcrypt.check_password_hash(
             user.password, form.password.data
         ):
-            login_user(user)
+            login_user(user, remember=form.remember.data)
             
+           
+            next_page = request.args.get('next')
             flash("Welcome back!", "success")
-            return redirect(url_for("auth.home"))
+            return redirect(next_page) if next_page else redirect(url_for('auth.home'))
 
         flash("Invalid username or password", "danger")
 

@@ -30,6 +30,10 @@ login
                     <div class="input-group">
                         {{ form.password(placeholder = 'Password')}}
                     </div>
+                    <div class="remember-group">
+                        {{ form.remember(id="remember-me") }}
+                        {{ form.remember.label(for="remember-me") }}
+                </div>
 
                      {{ form.submit(class="register-btn") }}
                 </form>

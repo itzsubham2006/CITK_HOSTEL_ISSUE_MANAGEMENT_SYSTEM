@@ -2,12 +2,21 @@ from flask import Flask
 from .config import Config
 from .extensions import db, bcrypt, login_manager
 from flask_migrate import Migrate
+from datetime import timedelta
+
+login_manager.session_protection = "strong"
+login_manager.login_view = "auth.login"
+login_manager.login_message_category = "info"
+
+
+
 
 migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=30)
 
    
     db.init_app(app)
