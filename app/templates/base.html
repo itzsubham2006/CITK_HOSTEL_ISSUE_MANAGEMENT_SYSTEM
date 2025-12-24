@@ -6,21 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CITK Hostel Issue Management System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename = 'js/script.js')}}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
+
     <header>
         <div class="top-bar">
-            <div class="container">
-                <div class="top-left">CITK | HOSTEL PORTAL</div>
-                <div class="top-right">
-                    <a href="#"><i class="fa-solid fa-user"></i> My Profile</a>
-                    <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                </div>
+        <div class="container">
+            <div class="top-left">
+                <span id="typing-text"></span>
+                <span class="cursor"></span>
+            </div>
+
+            <div class="top-right">
+                <a href="#"><i class="fa-solid fa-user"></i> My Profile</a>
+                <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </div>
         </div>
+    </div>
 
         <div class="branding-section">
             <div class="container">
@@ -58,6 +64,98 @@
         </section>
     </main>
     {%endblock%}
+    
+    
+    
+    {%block footer%}
+    
+    <footer class="citk-footer">
+        <div class="footer-container">
+            
+        <div class="footer-about">
+            <img src="{{ url_for('static', filename='images/citk_logo.png') }}" alt="CITK Logo">
+            <h3>Central Institute of Technology</h3>
+            <p>Kokrajhar - 783370, Assam, India</p>
+            <p class="email">📧 XXXXXXXX.cit.ac.in</p>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        
+       
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Report Issue</a></li>
+                <li><a href="#">My Reported Issue</a></li>
+                <li><a href="#">Hostel Wardens</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+        
+    
+        <div class="footer-links">
+            <h4>Important Links</h4>
+            <ul>
+                <li><a href="#">Anti Ragging</a></li>
+                <li><a href="#">Hostel Rules</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+        <p>
+           This website is developed for training and academic purposes only.
+            It is not an official system of Central Institute of Technology, Kokrajhar.
+            Official deployment will be considered only after institutional approval.
+        </p>
+        <p class="copyright">
+            © 2025 Central Institute of Technology Kokrajhar
+        </p>
+    </div>
+</footer>
 
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const text = "CITK | HOSTEL PORTAL";
+    const container = document.getElementById("typing-text");
+    let index = 0;
+
+    function play() {
+        if (index < text.length) {
+            container.textContent += text[index];
+            index++;
+            setTimeout(play, 900);
+        } else {
+            setTimeout(() => {
+                container.textContent = "";
+                index = 0;
+                play();
+            }, 1000);
+        }
+    }
+
+    play();
+});
+</script>
 </body>
 </html>
