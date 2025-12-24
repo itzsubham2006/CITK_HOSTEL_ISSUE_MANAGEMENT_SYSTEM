@@ -8,4 +8,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     hostel = db.Column(db.String(100), nullable=False)
     room_no = db.Column(db.String(20), nullable=False)
+    role = db.Column(
+        db.String(20),
+        nullable=False,
+        default="student"  
+    )
 
