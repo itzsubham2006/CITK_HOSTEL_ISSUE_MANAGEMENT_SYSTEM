@@ -107,7 +107,8 @@ class ComplaintForm(FlaskForm):
         "Description of Issue",
         validators=[DataRequired()]
     )
-
+    hostel = StringField("Hostel")
+    
     image = FileField(
         "Upload Image (optional)",
         validators=[

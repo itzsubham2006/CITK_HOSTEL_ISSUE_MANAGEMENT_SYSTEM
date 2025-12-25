@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, jsonify, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user
+from sqlalchemy import func
 from ..extensions import db
 from ..models.complaints import Complaint
 from ..forms import ComplaintForm
@@ -61,7 +62,7 @@ def report_issue():
             description=form.description.data,
             image=image_filename,
             user_id=current_user.id,
-            hostel=current_user.hostel   #  auto
+            hostel=current_user.hostel 
         )
 
         db.session.add(new_issue)
@@ -95,3 +96,84 @@ def schedules():
     return render_template("student/schedules.html")
     
     
+
+    
+@students_bp.route("/about")
+@login_required
+def about():
+    return render_template("student/about.html")
+
+    
+@students_bp.route("/hostel_facility")
+@login_required
+def hostel_facility():
+    return render_template("hostel/hostel_facility.html")
+    
+    
+@students_bp.route("/all_issues")
+@login_required
+def all_issues():
+    complaints = Complaint.query.filter_by(
+        hostel=current_user.hostel
+    ).order_by(Complaint.date_posted.desc()).all()
+
+    return render_template(
+        "student/all_issues.html",
+        complaints=complaints,
+        hostel=current_user.hostel
+    )
+    
+    
+    
+    
+@students_bp.route("/analytics")
+@login_required
+def analytics():
+    hostel = current_user.hostel
+
+    data = db.session.query(
+        Complaint.status,
+        func.count(Complaint.id)
+    ).filter(
+        Complaint.hostel == hostel
+    ).group_by(Complaint.status).all()
+
+    stats = {
+        "Pending": 0,
+        "In Progress": 0,
+        "Resolved": 0
+    }
+
+    for status, count in data:
+        stats[status] = count
+
+    total = sum(stats.values())
+
+    return render_template(
+        "student/analytics.html",
+        stats=stats,
+        total=total,
+        hostel=hostel
+    )
+
+
+
+
+
+
+
+
+
+@students_bp.route("/api/analytics")
+@login_required
+def analytics_api():
+    hostel = current_user.hostel
+
+    data = db.session.query(
+        Complaint.status,
+        func.count(Complaint.id)
+    ).filter(
+        Complaint.hostel == hostel
+    ).group_by(Complaint.status).all()
+
+    return jsonify({status: count for status, count in data})

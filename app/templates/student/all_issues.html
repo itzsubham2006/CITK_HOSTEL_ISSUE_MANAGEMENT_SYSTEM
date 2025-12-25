@@ -1,0 +1,46 @@
+<!-- templates/student/all_issues.html -->
+{% extends "base.html" %}
+
+{% block link %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-4">
+  <h2 class="fw-bold mb-4 text-success">All Issues – {{ hostel }}</h2>
+
+  {% for c in complaints %}
+  <div class="issue-card mb-4">
+
+    <div class="issue-header">
+      <span class="issue-title">{{ c.category }}</span>
+
+      <span class="status
+        {% if c.status=='Pending' %}status-pending
+        {% elif c.status=='In Progress' %}status-progress
+        {% else %}status-resolved{% endif %}">
+        {{ c.status }}
+      </span>
+    </div>
+
+    <div class="issue-desc">
+      {{ c.description }}
+    </div>
+
+    {% if c.image %}
+      <img
+        src="{{ url_for('static', filename='complaint_images/' ~ c.image) }}"
+        class="issue-image">
+    {% endif %}
+
+    <div class="issue-footer">
+      {{ c.date_posted.strftime('%d %b %Y • %I:%M %p') }}
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

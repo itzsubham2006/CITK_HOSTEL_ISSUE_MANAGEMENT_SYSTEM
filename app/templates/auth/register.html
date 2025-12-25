@@ -10,7 +10,7 @@
 <body>
 
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     <div class="flash-container">
       {% for category, message in messages %}
@@ -20,18 +20,18 @@
       {% endfor %}
     </div>
   {% endif %}
-{% endwith %}
+{% endwith %} -->
 
 
 {%block content%}
 <div class="register-main">
 
-    <!-- Logo -->
+    
     <div class="citklogo">
         <img src="{{ url_for('static', filename='images/cit-logoo.png') }}" alt="CIT Logo">
     </div>
 
-    <!-- FORM + INFO PANEL -->
+    
     <div class="register-box">
 
       
@@ -98,7 +98,7 @@
 
             <ul>
                 <li><i class="fa-solid fa-user"></i> Username: Min 4 characters</li>
-                <li><i class="fa-solid fa-envelope"></i> Valid email address</li>
+                <li><i class="fa-solid fa-envelope"></i> Valid college email address</li>
                 <li><i class="fa-solid fa-key"></i> Password: Min 6 characters</li>
                 <li><i class="fa-solid fa-building-user"></i> Correct hostel & room</li>
             </ul>
