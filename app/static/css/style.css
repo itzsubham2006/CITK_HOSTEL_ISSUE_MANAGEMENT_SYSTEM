@@ -6,6 +6,17 @@
    
 }
 
+
+/* --------new */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;  
+}
+/* ----------------------- */
+
+
+
+
 body {
     background-color: #f4f7f6;
 }
@@ -35,7 +46,7 @@ body {
     margin-top: 40px;
 }
 
-/* FORM BOX */
+
 .register2-box {
     width: 380px;
     background: #ffffff;
@@ -200,6 +211,33 @@ input::placeholder {
 }
 
 
+/* ------------new-------- */
+
+/* @media (max-width: 480px) {
+    .citklogo img {
+        width: 200px;
+    }
+
+    .register2-box {
+        width: 95%;
+        padding: 25px 18px;
+    }
+
+    .register2-box h2 {
+        font-size: 18px;
+    }
+
+    input {
+        font-size: 14px;
+        padding: 11px;
+    }
+
+    .register-btn {
+        font-size: 14px;
+    }
+} */
+/* --------------------- */
+
 
 
 /*                                      ------------home page--------------------------- */
@@ -354,6 +392,174 @@ input::placeholder {
 }
 
 
+
+
+
+
+/* ---------------------mega-menu---------------------------------------- */
+
+/* NAVBAR */
+.sp-main-nav {
+    background: #2f7d32;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.sp-nav-list {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    padding: 12px 40px;
+    margin: 0;
+}
+
+.sp-nav-list li {
+    position: relative;
+}
+
+.sp-nav-list a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+
+.sp-badge {
+    background: red;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+
+.sp-mega-box {
+    position: absolute;
+    left: 0;
+    top: 100%;              
+    margin-top: 6px;
+
+    width: 520px;
+    background: #ffffff;
+    display: flex;
+    gap: 20px;
+    padding: 18px;
+
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+
+    z-index: 9999;         
+}
+
+
+.sp-mega-parent:hover .sp-mega-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.sp-mega-left {
+    width: 35%;
+}
+
+.sp-mega-left h4 {
+    background: #000;
+    color: #fff;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+}
+
+.sp-mega-left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sp-mega-left li {
+    margin-bottom: 8px;
+}
+.sp-mega-left li:hover {
+    text-decoration: underline;
+}
+
+.sp-mega-left a {
+    color: #333;
+}
+
+
+.sp-mega-right {
+    width: 65%;
+}
+
+.sp-mega-right h4 {
+    background: #000;
+    color: #fff;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+}
+
+.sp-mega-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.sp-mega-grid a {
+    color: #333;
+    font-size: 14px;
+    transition: 0.5 ease;
+}
+
+.sp-mega-grid a:hover {
+    text-decoration: underline;
+}
+
+.sp-nav-list > li > a {
+    position: relative;
+    padding-bottom: 4px;
+}
+
+
+.sp-nav-list > li > a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1.5px;
+    background-color: #ffffff;
+    transition: width 0.5s ease;
+}
+
+
+.sp-nav-list > li > a:hover::after {
+    width: 60%;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------------new2-------------- */
+.sp-mega-left h4,
+.sp-mega-right h4 {
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
+.sp-mega-left li,
+.sp-mega-grid a {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+
+
+
 /*                                   -----------------------------register_flash_message------------------- */
 
 .flash-container {
@@ -387,7 +593,6 @@ input::placeholder {
 
 
 
-
 /* ---------------------------------homee----------------------------- */
 
 .foto {
@@ -405,19 +610,6 @@ input::placeholder {
     height: auto;           
     display: block;          
 }
-
-/* .about_text{
-    padding: 13%;
-    font-family: sans-serif
-}
-
-
-.about_text_header h2{
-    color: #1b5e20;
-    font-size: 28px;
-    margin: 10px;
-} */
-
 
 .about-wrapper {
     padding: 40px 20px;
@@ -464,7 +656,7 @@ input::placeholder {
     margin-bottom: 15px;
 }
 
-/* HIGHLIGHTS */
+
 .about-highlights {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -636,5 +828,236 @@ input::placeholder {
 
     .footer-links h4 {
         margin: 15px auto;
+    }
+}
+
+
+
+/*                              ----------------------------schedules------------------------ */
+
+
+/* mess_menu */
+
+.mess-menu-section {
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    max-width: 1100px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+}
+
+.section-title {
+    text-align: center;
+    color: #1b5e20;
+    margin-bottom: 20px;
+}
+
+.download-box {
+    text-align: right;
+    margin-bottom: 15px;
+    
+}
+
+.download-btn {
+    background: #2e7d32;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.download-btn:hover {
+    background: #1b5e20;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.mess-menu-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mess-menu-table th {
+    background: #2e7d32;
+    color: #fff;
+    padding: 12px;
+}
+
+.mess-menu-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.mess-menu-table tr:nth-child(even) {
+    background: #f4f7f6;
+}
+
+.menu-note {
+   font-size: 15.5px;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+/* -------generator----------- */
+.gen-menu-section {
+    margin: 90px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    max-width: 1100px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------*/
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .top-right a {
+        margin: 0 10px;
+    }
+
+    .logo-area {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .main-logo {
+        height: 65px;
+        margin-right: 0;
+    }
+
+    .main2-logo {
+        position: static;
+        width: 40px;
+        margin-top: 5px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-nav ul li a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .sp-mega-box {
+        position: static;
+        width: 100%;
+        flex-direction: column;
+        gap: 20px;
+        box-shadow: none;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 15px;
+    }
+
+    .sp-mega-left,
+    .sp-mega-right {
+        width: 100%;
+    }
+
+    .sp-mega-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+    .welcome-section {
+        padding: 25px 18px;
+        margin-top: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .welcome-section h2,
+    .welcome-section h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mess-menu-table th,
+    .mess-menu-table td {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .download-box {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .footer-container {
+        padding: 30px 5%;
+    }
+
+    .footer-about img {
+        width: 75px;
+    }
+
+    .footer-links ul li a {
+        font-size: 13px;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .sp-mega-box {
+        position: fixed;          
+        top: 110px;               
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+
+        width: 92%;
+        max-width: 420px;
+
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+    }
+
+    .sp-mega-parent.active .sp-mega-box {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
     }
 }

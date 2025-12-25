@@ -86,3 +86,12 @@ def dashboard():
         complaints=complaints,
         hostel=hostel
     )
+    
+    
+    
+@students_bp.route("/schedules")
+@login_required
+def schedules():
+    return render_template("student/schedules.html")
+    
+    

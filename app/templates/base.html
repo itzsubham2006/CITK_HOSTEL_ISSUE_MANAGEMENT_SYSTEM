@@ -6,10 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CITK Hostel Issue Management System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename = 'js/script.js')}}"> -->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const megaParents = document.querySelectorAll(".sp-mega-parent");
+
+    megaParents.forEach(parent => {
+        const link = parent.querySelector("a");
+
+        link.addEventListener("click", function (e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+
+                // Close others
+                megaParents.forEach(p => {
+                    if (p !== parent) p.classList.remove("active");
+                });
+
+                parent.classList.toggle("active");
+            }
+        });
+    });
+
+    // Close when tapping outside (mobile)
+    document.addEventListener("click", function (e) {
+        if (window.innerWidth <= 900) {
+            megaParents.forEach(parent => {
+                if (!parent.contains(e.target)) {
+                    parent.classList.remove("active");
+                }
+            });
+        }
+    });
+});
+</script>
+
+
+
+
 <body>
 
 
@@ -42,20 +80,59 @@
             </div>
         </div>
 
-        <nav class="main-nav">
-            <div class="container">
-                <ul>
-                    <li><a href="{{ url_for('auth.home') }}"><i class="fa-solid fa-house"></i> Home</a></li>
-                    <li><a href="{{ url_for('students.report_issue') }}">Report Issue</a></li>
-                    <li><a href="{{ url_for('students.my_complaints') }}">My Reported Issues</a></li>
-                    <li><a href="#">Hostel Rules</a></li>
-                    <li><a href="#">Hostel Wardens</a></li>
-                    <li><a href="#" class="badge-link">Notifications <span class="badge">3</span></a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="{{ url_for('students.dashboard')}}">My Dashboard</a></li>
-                </ul>
+        <!-- nav -->
+        <nav class="sp-main-nav">
+            <ul class="sp-nav-list">
+            <li><a href="{{ url_for('auth.home') }}">Home</a></li>
+            <li><a href="{{ url_for('students.report_issue') }}">Report Issue</a></li>
+            <li><a href="{{ url_for('students.my_complaints') }}">My Reported Issues</a></li>
+
+        <!-- MEGA MENU -->
+        <li class="sp-mega-parent">
+            <a href="#">Resources ▾</a>
+
+            <div class="sp-mega-box">
+                <div class="sp-mega-left">
+                    <h4>Student Resources</h4>
+                    <ul>
+                        <li><a href="#">Hostel Rules</a></li>
+                        <li><a href="#">Notices</a></li>
+                        <li><a href="#">Forms</a></li>
+                        <li><a href="{{ url_for('students.schedules')}}">Schedules</a></li>
+                        <li><a href="#">Hostel Bodies</a></li>
+                        <li><a href="#">Hostel Diaries</a></li>
+                        
+                        
+                    </ul>
+                </div>
+
+                <div class="sp-mega-right">
+                    <h4>Others</h4>
+                    <div class="sp-mega-grid">
+                        <a href="#">Hostel Wardens</a>
+                        <a href="#">Anti Ragging</a>
+                        <a href="#">Internet</a>
+                        <a href="#">Hostel Facility</a>
+                        <a href="#">Help</a>
+
+                        
+                    </div>
+                </div>
             </div>
+        </li>
+
+        <li>
+            <a href="#" class="sp-badge-link">
+                Notifications <span class="sp-badge">3</span>
+            </a>
+        </li>
+
+        <li><a href="#">About</a></li>
+        <li><a href="{{ url_for('students.dashboard')}}">My Dashboard</a></li>
+            </ul>
         </nav>
+
+
     </header>
     {% block content%}
     <main class="container">
@@ -68,7 +145,7 @@
     
     
     
-    {%block footer%}
+    
     
     <footer class="citk-footer">
         <div class="footer-container">
@@ -121,13 +198,6 @@
     </div>
 </footer>
 
-{%endblock%}
-
-
-
-
-
-
 
 
 
@@ -158,5 +228,8 @@
     play();
 });
 </script>
+
+
+
 </body>
 </html>
