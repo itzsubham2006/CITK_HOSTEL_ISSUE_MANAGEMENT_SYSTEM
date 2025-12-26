@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from sqlalchemy import func
 from ..extensions import db
 from ..models.complaints import Complaint
+from ..models.complaints import ComplaintUpvote
 from ..forms import ComplaintForm
 import os
 import uuid
@@ -74,7 +75,7 @@ def report_issue():
     return render_template('student/report_issue.html', form=form)
 
 
-
+# ================================dashboard==============================
 @students_bp.route("/dashboard")
 @login_required
 def dashboard():
@@ -89,7 +90,7 @@ def dashboard():
     )
     
     
-    
+# =====================================schedules================================ 
 @students_bp.route("/schedules")
 @login_required
 def schedules():
@@ -97,83 +98,124 @@ def schedules():
     
     
 
-    
+# --------------------------------about----------------------------
 @students_bp.route("/about")
 @login_required
 def about():
     return render_template("student/about.html")
 
-    
+# -----------------------------------------hostel_facility-------------------------------
 @students_bp.route("/hostel_facility")
 @login_required
 def hostel_facility():
     return render_template("hostel/hostel_facility.html")
+
+
+
     
     
-@students_bp.route("/all_issues")
+# ------------------------------issues-----------------------------------
+@students_bp.route('/issues')
 @login_required
 def all_issues():
-    complaints = Complaint.query.filter_by(
-        hostel=current_user.hostel
-    ).order_by(Complaint.date_posted.desc()).all()
+    complaints = Complaint.query \
+        .filter_by(hostel=current_user.hostel) \
+        .order_by(Complaint.upvotes.desc(), Complaint.date_posted.desc()) \
+        .all()
 
     return render_template(
-        "student/all_issues.html",
+        'student/all_issues.html',
         complaints=complaints,
         hostel=current_user.hostel
     )
     
     
+
     
-    
-@students_bp.route("/analytics")
+# -----------------------------------------analytics----------------------------------
+@students_bp.route('/analytics')
 @login_required
 def analytics():
     hostel = current_user.hostel
-
-    data = db.session.query(
+    status_data = db.session.query(
         Complaint.status,
         func.count(Complaint.id)
-    ).filter(
-        Complaint.hostel == hostel
-    ).group_by(Complaint.status).all()
+    ).filter_by(hostel=hostel).group_by(Complaint.status).all()
 
-    stats = {
+    status_counts = {
         "Pending": 0,
         "In Progress": 0,
         "Resolved": 0
     }
 
-    for status, count in data:
-        stats[status] = count
+    for status, count in status_data:
+        status_counts[status] = count
+   
+    category_data = db.session.query(
+        Complaint.category,
+        func.count(Complaint.id)
+    ).filter_by(hostel=hostel).group_by(Complaint.category).all()
 
-    total = sum(stats.values())
+    categories = [c[0] for c in category_data]
+    category_counts = [c[1] for c in category_data]
 
+    total_upvotes = db.session.query(
+        func.count(ComplaintUpvote.id)
+    ).join(Complaint).filter(
+        Complaint.hostel == hostel
+    ).scalar()
+
+    total_issues = Complaint.query.filter_by(hostel=hostel).count()
+
+    top_issues = Complaint.query.filter_by(
+        hostel=hostel
+    ).order_by(Complaint.upvotes.desc()).limit(5).all()
+    
+    top_issues_data = [
+        {"category": issue.category, "upvotes": issue.upvotes}
+        for issue in top_issues
+    ]
     return render_template(
         "student/analytics.html",
-        stats=stats,
-        total=total,
-        hostel=hostel
+        status_counts=status_counts,
+        categories=categories,
+        category_counts=category_counts,
+        total_upvotes=total_upvotes,
+        total_issues=total_issues,
+        top_issues=top_issues_data  
     )
 
 
 
 
-
-
-
-
-
-@students_bp.route("/api/analytics")
+# ===========================upvote_complaint=====================================
+@students_bp.route('/complaint/<int:cid>/upvote', methods=['POST'])
 @login_required
-def analytics_api():
-    hostel = current_user.hostel
+def upvote_complaint(cid):
 
-    data = db.session.query(
-        Complaint.status,
-        func.count(Complaint.id)
-    ).filter(
-        Complaint.hostel == hostel
-    ).group_by(Complaint.status).all()
+    complaint = Complaint.query.get_or_404(cid)
 
-    return jsonify({status: count for status, count in data})
+    
+    existing = ComplaintUpvote.query.filter_by(
+        user_id=current_user.id,
+        complaint_id=cid
+    ).first()
+
+    if existing:
+        return jsonify({'success': False, 'error': 'Already voted'})
+
+    # add vote
+    vote = ComplaintUpvote(
+        user_id=current_user.id,
+        complaint_id=cid
+    )
+
+    complaint.upvotes += 1
+
+    db.session.add(vote)
+    db.session.commit()
+
+    return jsonify({
+        'success': True,
+        'upvotes': complaint.upvotes
+    })

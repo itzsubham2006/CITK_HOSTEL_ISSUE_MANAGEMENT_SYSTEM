@@ -11,9 +11,20 @@ class Complaint(db.Model):
     
   
     hostel = db.Column(db.String(100), nullable=False)  #  NEW
-    status = db.Column(db.String(20), default='Pending') 
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    upvotes = db.Column(db.Integer, default=1)
+
 
     def __repr__(self):
         return f"<Complaint {self.id} - {self.category}>"
+
+
+class ComplaintUpvote(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    complaint_id = db.Column(db.Integer, db.ForeignKey('complaint.id'), nullable=False)
+
+    __table_args__ = (
+        db.UniqueConstraint('user_id', 'complaint_id', name='unique_user_complaint_upvote'),
+    )
