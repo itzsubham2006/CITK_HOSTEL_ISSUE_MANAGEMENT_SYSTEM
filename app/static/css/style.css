@@ -1425,7 +1425,6 @@ input::placeholder {
     margin-left: 15px;
 }
 
-/* Dark mode */
 body.dark {
     background: #121212;
     color: #e0e0e0;
@@ -1446,9 +1445,9 @@ body.dark .facility-card {
 
 
 
-/* ----------------------------------------------------------------------------------------------------------------- */
+/* -----------------------------------------------------all_issue------------------------------------------------------------ */
 
-/* PAGE */
+
 .issues-page-wrapper {
   max-width: 950px;
   margin: auto;
@@ -1461,14 +1460,14 @@ body.dark .facility-card {
   color: var(--green);
 }
 
-/* LIST */
+
 .issues-vertical-list {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-/* CARD */
+
 .issue-row-card {
   display: flex;
   gap: 16px;
@@ -1485,10 +1484,9 @@ body.dark .facility-card {
   box-shadow: 0 18px 45px rgba(0,0,0,0.12);
 }
 
-/* TOP ISSUE HIGHLIGHT */
+
 .top-issue {
   border: 2px solid #2e7d32;
-  /* background: linear-gradient(90deg, #fff8e1, #ffffff); */
 }
 
 .top-badge {
@@ -1503,7 +1501,7 @@ body.dark .facility-card {
   border-radius: 20px;
 }
 
-/* INDEX */
+
 .issue-row-index {
   min-width: 32px;
   font-size: 1.3rem;
@@ -1513,7 +1511,6 @@ body.dark .facility-card {
   align-items: center;
 }
 
-/* CONTENT */
 .issue-row-content {
   flex: 1;
 }
@@ -1542,7 +1539,7 @@ body.dark .facility-card {
   color: #777;
 }
 
-/* IMAGE */
+
 .issue-row-image {
   margin-top: 10px;
   max-height: 180px;
@@ -1550,7 +1547,7 @@ body.dark .facility-card {
   box-shadow: 0 8px 22px rgba(0,0,0,0.15);
 }
 
-/* STATUS */
+
 .issue-row-status {
   padding: 6px 14px;
   border-radius: 20px;
@@ -1573,7 +1570,7 @@ body.dark .facility-card {
   color: white;
 }
 
-/* UPVOTE AREA */
+
 .issue-row-actions {
   display: flex;
   flex-direction: column;
@@ -1581,7 +1578,6 @@ body.dark .facility-card {
   gap: 6px;
 }
 
-/* UPVOTE BUTTON */
 .issue-upvote-btn {
   width: 42px;
   height: 42px;
@@ -1698,4 +1694,250 @@ body.dark .facility-card {
 .top-issues li {
   padding: 10px;
   border-bottom: 1px solid #eee;
+}
+
+
+
+
+
+/* --------------------------------------------------profile----------------------------------------------------------------- */
+/* .profile-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.profile-card {
+  background: #e8f5e9;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-container h3{
+    margin-top: 80px ;
+    margin-bottom: 10px;
+    font-size: 28px;
+     background: #e8f5e9;
+}
+
+.issue-card {
+  background: #fff;
+  padding: 12px;
+  border-left: 4px solid green;
+  margin-bottom: 10px;
+}
+
+.diary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.diary-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.diary-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  display: inline-block;
+  margin-top: 8px;
+  color: red;
+  font-size: 14px;
+} */
+
+
+
+
+
+
+.profile-wrapper {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* HEADER */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.profile-pic img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #2e7d32;
+}
+
+.profile-info h2 {
+  margin: 0;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* SECTION */
+.section-title {
+  margin: 30px 0 15px;
+  border-bottom: 2px solid #2e7d32;
+  display: inline-block;
+}
+
+/* ISSUES */
+.issue-card {
+  background: #f9f9f9;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-left: 4px solid #2e7d32;
+}
+
+/* DIARIES */
+.diary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.diary-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.diary-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.delete-btn {
+  display: inline-block;
+  margin-top: 8px;
+  color: #c62828;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.delete-btn:hover {
+  text-decoration: underline;
+}
+
+.empty {
+  color: #777;
+}
+
+
+/* ---------------------------------------------------------------diaries---------------------------------------------------------- */
+.diary-page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.upload-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.upload-box form {
+  display: flex;
+  gap: 10px;
+}
+
+.upload-box button {
+  background: green;
+  color: white;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.diary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.diary-card {
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.diary-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.caption {
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.user {
+  color: #555;
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 6px 0;
+}
+
+.comments {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.no-comment {
+  color: gray;
+}
+
+.comment-form {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.comment-form input {
+  flex: 1;
+  padding: 5px;
+}
+
+.comment-form button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+
+.diary-grid a{
+    color: black;
 }

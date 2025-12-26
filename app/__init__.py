@@ -3,6 +3,7 @@ from .config import Config
 from .extensions import db, bcrypt, login_manager
 from flask_migrate import Migrate
 from datetime import timedelta
+import os
 
 login_manager.session_protection = "strong"
 login_manager.login_view = "auth.login"
@@ -23,13 +24,22 @@ def create_app():
     bcrypt.init_app(app)
     login_manager.init_app(app) 
     migrate.init_app(app, db)
+    
+
+    UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads')
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
    
     from .routes import auth_bp
     from .routes.students_routes import students_bp
+    from .routes.hostel_diary import diary_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(students_bp)
+    app.register_blueprint(diary_bp)
 
     with app.app_context():
         db.create_all()

@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
 
             <div class="top-right">
-                <a href="#"><i class="fa-solid fa-user"></i> My Profile</a>
+                <a href="{{ url_for('students.profile') }}"><i class="fa-solid fa-user"></i> My Profile</a>
                 <a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 <button id="darkToggle" class="dark-btn">🌙</button>
 
@@ -100,13 +100,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             <div class="sp-mega-box">
                 <div class="sp-mega-left">
-                    <h4>Student Resources</h4>
+                    <h4>Hostel Resources</h4>
                     <ul>
                         <li><a href="#">Hostel Rules</a></li>
-                        <li><a href="#">Notices</a></li>
-                        <li><a href="{{ url_for('students.schedules')}}">Schedules</a></li>
+                        <li><a href="{{ url_for('students.schedules')}}">Imp Schedules</a></li>
                         <li><a href="#">Hostel Bodies</a></li>
-                        <li><a href="#">Hostel Diaries</a></li>
+                        <li><a href="#">Hostel Wardens</a></li>
+                        
                         
                         
                     </ul>
@@ -115,10 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="sp-mega-right">
                     <h4>Others</h4>
                     <div class="sp-mega-grid">
-                        <a href="#">Hostel Wardens</a>
+                        
                         <a href="#">Anti Ragging</a>
+                        <a href="#">Notices</a>
                         <a href="#">Internet</a>
-                        <a href="#">Hostel Facility</a>
                         <a href="#">Help</a>
 
                         
@@ -137,12 +137,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             <div class="sp-mega-box">
                 <div class="sp-mega-left">
-                    <h4>Students</h4>
+                    <h4>Important</h4>
                     <ul>
-                        <li><a href="#">Hostel Diaries</a></li>
+                        
                         <li><a href="#">Forms</a></li>
-                        <li><a href="#">Hostel Bodies</a></li>
-                        <li><a href="#">Hostel Diaries</a></li>
+                        <li><a href="#">Something </a></li>
+                        <li><a href="{{url_for('diary.hostel_diaries')}}">Hostel Diaries</a></li>
                         
                         
                     </ul>
@@ -151,9 +151,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="sp-mega-right">
                     <h4>Others</h4>
                     <div class="sp-mega-grid">
-                        <a href="#">Hostel Wardens</a>
+                        <a href="#">something</a>
                         <a href="#">Anti Ragging</a>
-                        <a href="#">Internet</a>
                         <a href="{{url_for('students.hostel_facility')}}">Hostel Facility</a>
                         <a href="#">Help</a>
 

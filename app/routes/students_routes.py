@@ -1,15 +1,13 @@
-from flask import Blueprint, jsonify, render_template, flash, redirect, url_for
+from flask import Blueprint, jsonify, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
 from sqlalchemy import func
 from ..extensions import db
-from ..models.complaints import Complaint
-from ..models.complaints import ComplaintUpvote
+from ..models.complaints import Complaint, ComplaintUpvote, HostelDiary
 from ..forms import ComplaintForm
 import os
 import uuid
 from flask import current_app
 from werkzeug.utils import secure_filename
-
 
 students_bp = Blueprint('students', __name__)
 
@@ -94,7 +92,7 @@ def dashboard():
 @students_bp.route("/schedules")
 @login_required
 def schedules():
-    return render_template("student/schedules.html")
+    return render_template("publics/schedules.html")
     
     
 
@@ -102,7 +100,7 @@ def schedules():
 @students_bp.route("/about")
 @login_required
 def about():
-    return render_template("student/about.html")
+    return render_template("publics/about.html")
 
 # -----------------------------------------hostel_facility-------------------------------
 @students_bp.route("/hostel_facility")
@@ -124,7 +122,7 @@ def all_issues():
         .all()
 
     return render_template(
-        'student/all_issues.html',
+        'publics/all_issues.html',
         complaints=complaints,
         hostel=current_user.hostel
     )
@@ -176,7 +174,7 @@ def analytics():
         for issue in top_issues
     ]
     return render_template(
-        "student/analytics.html",
+        "publics/analytics.html",
         status_counts=status_counts,
         categories=categories,
         category_counts=category_counts,
@@ -219,3 +217,68 @@ def upvote_complaint(cid):
         'success': True,
         'upvotes': complaint.upvotes
     })
+
+
+@students_bp.route('/profile')
+@login_required
+def profile():
+    issues = Complaint.query.filter_by(user_id=current_user.id).all()
+    diaries = HostelDiary.query.filter_by(user_id=current_user.id).all()
+    return render_template('publics/profile.html', issues=issues, diaries=diaries)
+
+
+
+@students_bp.route('/delete-diary/<int:id>')
+@login_required
+def delete_diary(id):
+    diary = HostelDiary.query.get_or_404(id)
+
+    if diary.user_id != current_user.id:
+        flash("You can't delete this photo", "danger")
+        return redirect(url_for('students.profile'))
+
+    image_path = os.path.join('app/static/uploads', diary.image)
+    if os.path.exists(image_path):
+        os.remove(image_path)
+
+    db.session.delete(diary)
+    db.session.commit()
+
+    flash("Diary deleted successfully", "success")
+    return redirect(url_for('students.profile'))
+
+
+
+
+from werkzeug.utils import secure_filename
+import os
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in {'png','jpg','jpeg'}
+           
+
+
+@students_bp.route('/upload-profile-pic', methods=['POST'])
+@login_required
+def upload_profile_pic():
+    file = request.files.get('profile_pic')
+
+    if not file or file.filename == '':
+        flash('No file selected', 'danger')
+        return redirect(url_for('students.profile'))
+
+    if not allowed_file(file.filename):
+        flash('Invalid file type', 'danger')
+        return redirect(url_for('students.profile'))
+
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+
+    file.save(filepath)
+
+    current_user.profile_pic = filename
+    db.session.commit()
+
+    flash('Profile picture updated!', 'success')
+    return redirect(url_for('students.profile'))

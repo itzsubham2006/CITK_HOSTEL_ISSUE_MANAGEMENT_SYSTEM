@@ -13,4 +13,10 @@ class User(db.Model, UserMixin):
         nullable=False,
         default="student"  
     )
+    diaries = db.relationship('HostelDiary', backref='user', lazy=True)
+    diary_comments = db.relationship('DiaryComment', backref='user', lazy=True)
+    diary_likes = db.relationship('DiaryLike', backref='user', lazy=True)
+    profile_pic = db.Column(db.String(255))
+
+
 
