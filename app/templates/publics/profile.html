@@ -28,8 +28,8 @@
     </div>
 
     <div class="profile-info">
-      <h2>{{ current_user.username }}</h2>
-      <p>{{ current_user.email }}</p>
+      <h2>Username: {{ current_user.username }}</h2>
+      <p>Email: {{ current_user.email }}</p>
       <p>Hostel: {{ current_user.hostel }}</p>
       <p>Room No: {{ current_user.room_no }}</p>
     </div>
@@ -54,7 +54,7 @@
         <img src="{{ url_for('static', filename='uploads/' + diary.image) }}">
         <p>{{ diary.caption }}</p>
 
-        <!-- DELETE BUTTON (FIXED) -->
+       
         <a href="{{ url_for('students.delete_diary', id=diary.id) }}"
            class="delete-btn"
            onclick="return confirm('Delete this diary?')">

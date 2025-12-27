@@ -57,3 +57,5 @@ class HostelDiary(db.Model):
 
     likes = db.relationship('DiaryLike', backref='diary', lazy=True)
     comments = db.relationship('DiaryComment', backref='diary', lazy=True)
+
+

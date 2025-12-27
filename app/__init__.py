@@ -3,6 +3,8 @@ from .config import Config
 from .extensions import db, bcrypt, login_manager
 from flask_migrate import Migrate
 from datetime import timedelta
+from app import models
+from app.models.announcements import Announcement
 import os
 
 login_manager.session_protection = "strong"
@@ -36,12 +38,23 @@ def create_app():
     from .routes import auth_bp
     from .routes.students_routes import students_bp
     from .routes.hostel_diary import diary_bp
+    from .routes.admin_routes import admin_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(students_bp)
     app.register_blueprint(diary_bp)
+    app.register_blueprint(admin_bp)
 
     with app.app_context():
         db.create_all()
+        
+        
+  
+    @app.context_processor
+    def inject_notification_count():
+        count = Announcement.query.count()
+        return dict(notification_count=count)
+
 
     return app
+

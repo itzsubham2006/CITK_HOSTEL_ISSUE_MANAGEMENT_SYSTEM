@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container" style="max-width: 600px; margin-top: 30px;">
-    <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    
+    <div style="background: #d3dcd0; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
         <h2 style="color:#2e7d32; margin-bottom: 5px;">Report a Hostel Issue </h2>
         <p style="color:#666; margin-bottom: 20px;"> Hostel: <strong>{{ current_user.hostel }}</strong>
         </p>
-
-
 
         <form method="POST"  enctype="multipart/form-data">
             {{ form.hidden_tag() }}
@@ -22,10 +21,24 @@
             {{ form.image.label(style="display:block; margin-bottom: 5px; font-weight: bold;") }}
             {{ form.image(style="width: 100%;") }}
             <small style="color:#777;">Upload image if available (jpg, png)</small>
-</div>
+            </div>
 
             {{ form.submit(style="background: #2e7d32; color: white; border: none; padding: 12px 25px; border-radius: 4px; cursor: pointer; font-size: 16px;") }}
         </form>
     </div>
+
+    <div class="info-panel">
+            <h3>Note :</h3>
+            <hr>
+
+            <ul>
+                <li><i class="fa-solid fa-user"></i>A hostel is a shared responsibility and runs better when students care about it. <br><br>Report genuine issues and be part of the solution.</li>
+               
+            </ul>
+
+            <p class="info-note">
+                Your report issue can make a real difference.
+            </p>
+        </div>
 </div>
 {% endblock %}

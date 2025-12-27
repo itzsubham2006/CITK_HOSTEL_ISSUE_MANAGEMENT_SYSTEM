@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="announce-box">
+  <h2>📢 New Announcement</h2>
+
+  <form method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="message" placeholder="Message" required></textarea>
+
+    <select name="hostel">
+      <option value="">All Hostels</option>
+      <option value="SJ">SJ</option>
+      <option value="MJ">MJ</option>
+    </select>
+
+    <button type="submit">Publish</button>
+  </form>
+</div>
+
+<hr>
+
+<h3>Previous Announcements</h3>
+
+{% for a in announcements %}
+<div class="announce-card">
+  <h4>{{ a.title }}</h4>
+  <p>{{ a.message }}</p>
+  <small>{{ a.created_at.strftime('%d %b %Y') }}</small>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,3 +1,4 @@
+# ==============================importing all_stuffs=====================================================
 from flask import Blueprint, jsonify, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
 from sqlalchemy import func
@@ -113,19 +114,25 @@ def hostel_facility():
     
     
 # ------------------------------issues-----------------------------------
-@students_bp.route('/issues')
+@students_bp.route("/issues")
 @login_required
 def all_issues():
-    complaints = Complaint.query \
-        .filter_by(hostel=current_user.hostel) \
-        .order_by(Complaint.upvotes.desc(), Complaint.date_posted.desc()) \
-        .all()
+
+    if current_user.role == 'admin':
+        complaints = Complaint.query.order_by(Complaint.upvotes.desc()).all()
+        hostel = "All Hostels"
+    else:
+        complaints = Complaint.query.filter_by(
+            hostel=current_user.hostel
+        ).order_by(Complaint.upvotes.desc()).all()
+        hostel = current_user.hostel
 
     return render_template(
-        'publics/all_issues.html',
+        "publics/all_issues.html",
         complaints=complaints,
-        hostel=current_user.hostel
+        hostel=hostel
     )
+
     
     
 
@@ -134,11 +141,21 @@ def all_issues():
 @students_bp.route('/analytics')
 @login_required
 def analytics():
-    hostel = current_user.hostel
-    status_data = db.session.query(
+
+    is_admin = current_user.role == 'admin'
+
+    # ---------- STATUS COUNTS ----------
+    status_query = db.session.query(
         Complaint.status,
         func.count(Complaint.id)
-    ).filter_by(hostel=hostel).group_by(Complaint.status).all()
+    )
+
+    if not is_admin:
+        status_query = status_query.filter(
+            Complaint.hostel == current_user.hostel
+        )
+
+    status_data = status_query.group_by(Complaint.status).all()
 
     status_counts = {
         "Pending": 0,
@@ -148,31 +165,70 @@ def analytics():
 
     for status, count in status_data:
         status_counts[status] = count
-   
-    category_data = db.session.query(
+
+
+    # ---------- CATEGORY COUNTS ----------
+    category_query = db.session.query(
         Complaint.category,
         func.count(Complaint.id)
-    ).filter_by(hostel=hostel).group_by(Complaint.category).all()
+    )
 
-    categories = [c[0] for c in category_data]
-    category_counts = [c[1] for c in category_data]
+    if not is_admin:
+        category_query = category_query.filter(
+            Complaint.hostel == current_user.hostel
+        )
 
-    total_upvotes = db.session.query(
+    category_data = category_query.group_by(Complaint.category).all()
+
+    categories = [c for c, _ in category_data]
+    category_counts = [count for _, count in category_data]
+
+
+    # ---------- TOTAL UPVOTES ----------
+    upvote_query = db.session.query(
         func.count(ComplaintUpvote.id)
-    ).join(Complaint).filter(
-        Complaint.hostel == hostel
-    ).scalar()
+    ).join(Complaint)
 
-    total_issues = Complaint.query.filter_by(hostel=hostel).count()
+    if not is_admin:
+        upvote_query = upvote_query.filter(
+            Complaint.hostel == current_user.hostel
+        )
 
-    top_issues = Complaint.query.filter_by(
-        hostel=hostel
-    ).order_by(Complaint.upvotes.desc()).limit(5).all()
-    
+    total_upvotes = upvote_query.scalar() or 0
+
+
+    # ---------- TOTAL ISSUES ----------
+    issues_query = Complaint.query
+
+    if not is_admin:
+        issues_query = issues_query.filter(
+            Complaint.hostel == current_user.hostel
+        )
+
+    total_issues = issues_query.count()
+
+
+    # ---------- TOP ISSUES ----------
+    top_query = Complaint.query.order_by(
+        Complaint.upvotes.desc()
+    )
+
+    if not is_admin:
+        top_query = top_query.filter(
+            Complaint.hostel == current_user.hostel
+        )
+
+    top_issues = top_query.limit(5).all()
+
     top_issues_data = [
-        {"category": issue.category, "upvotes": issue.upvotes}
+        {
+            "category": issue.category,
+            "upvotes": issue.upvotes
+        }
         for issue in top_issues
     ]
+
+
     return render_template(
         "publics/analytics.html",
         status_counts=status_counts,
@@ -180,9 +236,9 @@ def analytics():
         category_counts=category_counts,
         total_upvotes=total_upvotes,
         total_issues=total_issues,
-        top_issues=top_issues_data  
+        top_issues=top_issues_data,
+        hostel="All Hostels" if is_admin else current_user.hostel
     )
-
 
 
 
@@ -219,15 +275,8 @@ def upvote_complaint(cid):
     })
 
 
-@students_bp.route('/profile')
-@login_required
-def profile():
-    issues = Complaint.query.filter_by(user_id=current_user.id).all()
-    diaries = HostelDiary.query.filter_by(user_id=current_user.id).all()
-    return render_template('publics/profile.html', issues=issues, diaries=diaries)
 
-
-
+# ================diary delete=============================
 @students_bp.route('/delete-diary/<int:id>')
 @login_required
 def delete_diary(id):
@@ -249,10 +298,15 @@ def delete_diary(id):
 
 
 
+# ==================================profile===============================
+@students_bp.route('/profile')
+@login_required
+def profile():
+    issues = Complaint.query.filter_by(user_id=current_user.id).all()
+    diaries = HostelDiary.query.filter_by(user_id=current_user.id).all()
+    return render_template('publics/profile.html', issues=issues, diaries=diaries)
 
-from werkzeug.utils import secure_filename
-import os
-
+# ==========================profile picture=================
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in {'png','jpg','jpeg'}

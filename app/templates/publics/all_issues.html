@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 
-{% block link %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
-{% endblock %}
-
 {% block content %}
 
 <div class="issues-page-wrapper">
@@ -16,43 +12,78 @@
     <div class="issue-row-card {% if loop.index <= 3 %}top-issue{% endif %}">
 
       
-
-      <!-- LEFT NUMBER -->
       <div class="issue-row-index">
         {{ loop.index }}
       </div>
 
-      <!-- CENTER CONTENT -->
+      
       <div class="issue-row-content">
 
+        <!-- HEADER -->
         <div class="issue-row-header">
           <span class="issue-row-category">{{ c.category }}</span>
 
+          {% if current_user.role == 'admin' %}
+          <!-- ADMIN STATUS CONTROL -->
+          <form
+            method="POST"
+            action="{{ url_for('admin.update_status', id=c.id) }}"
+            class="status-form">
+
+            <select
+              name="status"
+              class="status-select"
+              onchange="this.form.submit()">
+
+              <option value="Pending"
+                {% if c.status == 'Pending' %}selected{% endif %}>
+                Pending
+              </option>
+
+              <option value="In Progress"
+                {% if c.status == 'In Progress' %}selected{% endif %}>
+                In Progress
+              </option>
+
+              <option value="Resolved"
+                {% if c.status == 'Resolved' %}selected{% endif %}>
+                Resolved
+              </option>
+
+            </select>
+          </form>
+
+          {% else %}
+         
           <span class="issue-row-status
             {% if c.status == 'Pending' %}status-pending
             {% elif c.status == 'In Progress' %}status-progress
             {% else %}status-resolved{% endif %}">
             {{ c.status }}
           </span>
+          {% endif %}
         </div>
 
+        
         <p class="issue-row-desc">
           {{ c.description }}
         </p>
 
+        
         {% if c.image %}
-          <img
-            src="{{ url_for('static', filename='complaint_images/' ~ c.image) }}"
-            class="issue-row-image">
+        <img
+          src="{{ url_for('static', filename='complaint_images/' ~ c.image) }}"
+          class="issue-row-image">
         {% endif %}
 
+        
         <div class="issue-row-time">
           {{ c.date_posted.strftime('%d %b %Y • %I:%M %p') }}
         </div>
 
       </div>
 
-      <!-- RIGHT UPVOTE -->
+    
       <div class="issue-row-actions">
         <button
           class="issue-upvote-btn"
@@ -72,6 +103,7 @@
   </div>
 </div>
 
+<!-- UPVOTE SCRIPT -->
 <script>
 function animateCount(el, start, end) {
   let current = start;
@@ -89,20 +121,20 @@ document.querySelectorAll('.issue-upvote-btn').forEach(btn => {
     const countEl = document.getElementById(`vote-count-${id}`);
     const oldCount = parseInt(countEl.innerText);
 
-    fetch(`/complaint/${id}/upvote`, { method: 'POST' })
-      .then(res => res.json())
-      .then(data => {
-
-        if (data.success) {
-          animateCount(countEl, oldCount, data.upvotes);
-          btn.disabled = true;
-          btn.innerText = "✔";
-          btn.classList.add('voted');
-        } else {
-          alert("You already upvoted this issue.");
-        }
-
-      });
+    fetch(`/complaint/${id}/upvote`, {
+      method: 'POST'
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        animateCount(countEl, oldCount, data.upvotes);
+        btn.disabled = true;
+        btn.innerText = "✔";
+        btn.classList.add('voted');
+      } else {
+        alert("You already upvoted this issue.");
+      }
+    });
   });
 });
 </script>
