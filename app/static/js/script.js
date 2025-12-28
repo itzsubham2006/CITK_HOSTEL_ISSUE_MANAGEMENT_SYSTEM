@@ -109,3 +109,4 @@ topIssuesData.forEach(issue => {
     li.innerHTML = `${issue.category} — <strong>${issue.upvotes}</strong> upvotes`;
     topIssuesList.appendChild(li);
 });
+

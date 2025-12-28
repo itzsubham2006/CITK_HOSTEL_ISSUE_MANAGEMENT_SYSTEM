@@ -7,6 +7,7 @@ from ..models.complaints import Complaint, ComplaintUpvote, HostelDiary
 from ..forms import ComplaintForm
 import os
 import uuid
+from app.models.announcements import Notification
 from flask import current_app
 from werkzeug.utils import secure_filename
 
@@ -133,8 +134,52 @@ def all_issues():
         hostel=hostel
     )
 
+
+
+
+
+# ------------------------------------notififcation------------------------------------
+@students_bp.route("/notification")
+@login_required
+def notification():
+    notifications = Notification.query.order_by(
+        Notification.created_at.desc()
+    ).all()
+
+    return render_template(
+        "publics/notification.html",
+        notifications=notifications
+    )
     
+# -------------------delete_notification---------------------
+@students_bp.route("/notifications/delete/<int:id>", methods=["POST"])
+@login_required
+def delete_notification(id):
+    notification = Notification.query.get_or_404(id)
+    db.session.delete(notification)
+    db.session.commit()
+    flash("Notification removed", "success")
+    return redirect(url_for("students.notification"))
+
+
+# -------------------------------clear_notifications-------------------
+@students_bp.route("/clear_notifications", methods=["POST"])
+@login_required
+def clear_notifications():
+    # Delete all notifications for the logged-in user
+    try:
+        Notification.query.filter_by(user_id=current_user.id).delete()
+        db.session.commit()
+        flash("All notifications cleared successfully.", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash("Error clearing notifications.", "danger")
+        print(e)
     
+    return redirect(url_for("students.notification"))
+
+
+
 
     
 # -----------------------------------------analytics----------------------------------
@@ -336,3 +381,12 @@ def upload_profile_pic():
 
     flash('Profile picture updated!', 'success')
     return redirect(url_for('students.profile'))
+
+
+
+
+
+
+@students_bp.route('/cube')
+def cube():
+    return render_template("cube/index.html")

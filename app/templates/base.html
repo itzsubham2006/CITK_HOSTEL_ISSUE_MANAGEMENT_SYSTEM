@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <a href="{{ url_for('students.profile') }}"><i class="fa-solid fa-user"></i> My Profile</a>
                 <a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 <button id="darkToggle" class="dark-btn">🌙</button>
+                
 
             </div>
         </div>
@@ -155,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="sp-mega-right">
                     <h4>Others</h4>
                     <div class="sp-mega-grid">
-                        <a href="#">something</a>
+                        <a href="{{url_for('students.cube')}}">Fun games</a>
                         <a href="#">Anti Ragging</a>
                         <a href="{{url_for('students.hostel_facility')}}">Hostel Facility</a>
                         <a href="#">Help</a>
@@ -166,13 +167,14 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         </li>
         <li>
-            <a href="#" class="sp-badge-link">
+            <a href="{{url_for('students.notification')}}" class="sp-badge-link">
                Notifications <span class="sp-badge">{{ notification_count }}</span>
 
             </a>
         </li>
 
         <li><a href="{{url_for('students.about')}}">About</a></li>
+        
         
             </ul>
         </nav>
