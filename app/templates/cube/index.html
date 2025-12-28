@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive 3D Rubik's Cube</title>
     <style>
-        /* Responsive sizing variables */
+        
         :root {
-            /* Cube size scales between 40px and 65px per cubie based on screen width */
+            
             --size: clamp(40px, 8vw, 65px); 
             --offset: calc(var(--size) + 2px);
         }
@@ -23,7 +23,7 @@
             flex-direction: column;
         }
 
-        /* Centering the entire UI */
+       
         .app-container {
             display: flex;
             flex: 1;
@@ -32,7 +32,7 @@
             position: relative;
         }
 
-        /* Sidebar for buttons - moves to bottom on mobile */
+        
         .sidebar {
             width: 80px;
             background: rgba(0,0,0,0.3);
@@ -45,7 +45,7 @@
             border-right: 1px solid #333;
         }
 
-        /* Middle area where cube lives */
+        
         .cube-viewport {
             flex: 1;
             display: flex;
@@ -56,7 +56,7 @@
             position: relative;
         }
 
-        /* HUD - Stats at the top */
+        
         .hud {
             position: absolute;
             top: 20px;
@@ -70,7 +70,7 @@
             pointer-events: none;
         }
 
-        /* Bottom Controls */
+        
         .bottom-ui {
             position: absolute;
             bottom: 30px;
@@ -97,7 +97,7 @@
         .scramble-btn { background: #d35400; }
         .reset-btn { background: #2980b9; }
 
-        /* Cube Visuals */
+        
         #cube-pivot {
             position: relative;
             width: 0; height: 0;
@@ -123,7 +123,7 @@
             backface-visibility: hidden;
         }
 
-        /* Face Color Mapping */
+       
         .f { background: #e67e22; transform: rotateY(0deg) translateZ(calc(var(--size)/2)); }
         .b { background: #f1c40f; transform: rotateY(180deg) translateZ(calc(var(--size)/2)); }
         .r { background: #2ecc71; transform: rotateY(90deg) translateZ(calc(var(--size)/2)); }
@@ -131,7 +131,7 @@
         .u { background: #fff;    transform: rotateX(90deg) translateZ(calc(var(--size)/2)); }
         .d { background: #e74c3c; transform: rotateX(-90deg) translateZ(calc(var(--size)/2)); }
 
-        /* Mobile Adjustments */
+       
         @media (max-width: 600px) {
             .app-container { flex-direction: column-reverse; }
             .sidebar { 
@@ -215,7 +215,7 @@
     }
 
     function updateCubiePos(c) {
-        // Use the CSS variable for the gap calculation
+        
         const sizeStr = getComputedStyle(document.documentElement).getPropertyValue('--size');
         const size = parseInt(sizeStr.replace('px', '')) || 60;
         const offset = size + 2;
@@ -251,7 +251,7 @@
         });
     }
 
-    // Interaction logic
+   
     document.addEventListener('mousedown', e => {
         isDragging = true;
         startX = e.clientX; startY = e.clientY;

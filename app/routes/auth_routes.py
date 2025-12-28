@@ -8,15 +8,14 @@ from flask_login import login_user, current_user, logout_user
 
 auth_bp = Blueprint("auth", __name__)
 
+# -----------------------register-----------------------------
 @auth_bp.route("/", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
-
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(
             form.password.data
         ).decode("utf-8")
-
         user = User(
             username=form.username.data,
             email=form.email.data,
@@ -24,14 +23,10 @@ def register():
             hostel=form.hostel.data,
             room_no=form.room_no.data
         )
-
         db.session.add(user)
         db.session.commit()
-
-
         flash("Account created successfully", "success")
         return redirect(url_for("auth.login"))
-
     return render_template("auth/register.html", form=form)
 
 
@@ -39,7 +34,6 @@ def register():
 
 
 # ------------------ Login ------------------
-
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
@@ -48,11 +42,8 @@ def login():
 
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
-            
-           
             next_page = request.args.get('next')
             flash("Welcome back!", "success")
             return redirect(next_page) if next_page else redirect(url_for('auth.home'))

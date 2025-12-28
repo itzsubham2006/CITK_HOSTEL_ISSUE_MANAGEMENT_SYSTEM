@@ -6,30 +6,13 @@ from ..models.user import User
 
 class RegistrationForm(FlaskForm):
 
-    email = StringField(
-        'Email',
-        validators=[Email(), DataRequired()]
-    )
+    email = StringField('Email',validators=[Email(), DataRequired()])
 
-    username = StringField(
-        'Username',
-        validators=[DataRequired(), Length(min=4, max=30)]
-    )
+    username = StringField('Username', validators=[DataRequired(), Length(min=4, max=30)])
 
-    password = PasswordField(
-        'Password',
-        validators=[DataRequired(), Length(min=6)]
-    )
+    password = PasswordField('Password',validators=[DataRequired(), Length(min=6)])
 
-    confirm_password = PasswordField(
-        'Confirm Password',
-        validators=[DataRequired(), EqualTo('password')]
-    )
-
-    # hostel = StringField(
-    #     'Hostel Name',
-    #     validators=[DataRequired()]
-    # )
+    confirm_password = PasswordField('Confirm Password',validators=[DataRequired(), EqualTo('password')] )
     
     hostel = SelectField(
         "Hostel",
@@ -41,13 +24,9 @@ class RegistrationForm(FlaskForm):
             ("Bakhungri", "Bakhungri"),
             ("Gambari", "Gambari"),
         ],
-        validators=[DataRequired()]
-    )   #new
+        validators=[DataRequired()])   
 
-    room_no = StringField(
-        'Room No',
-        validators=[DataRequired()]
-    )
+    room_no = StringField('Room No',validators=[DataRequired()])
     
 
     submit = SubmitField('Sign up')

@@ -578,15 +578,29 @@ input::placeholder {
 /* ------------------citk slider--- */
 .collage-slider {
     position: relative;
-    overflow: hidden;
-    padding: 40px 0;
-    background: #f4fff6;
+    overflow: hidden;  
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.60),
+            rgba(0, 0, 0, 0.60)
+        ),
+        url("/static/images/bg-3.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 20px 10px 30px 10px;
+    
+    
 }
 
 .collage-track {
     display: flex;
     width: 200%;
     animation: scrollCollage 25s linear infinite;
+
 }
 
 
@@ -596,13 +610,14 @@ input::placeholder {
     grid-auto-rows: 180px;
     gap: 8px;
     width: 50%;
-    padding: 0 20px;
+    /* height: 90vh; */
+    
 }
 
 
 .collage img {
     width: 100%;
-    height: 100%;
+    height: 50vh;
     object-fit: cover;
     border-radius: 10px;
     transition: transform 0.4s ease;
@@ -637,6 +652,7 @@ input::placeholder {
     .collage {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 140px;
+        height: 100%;
     }
 
     .collage-text {
@@ -646,6 +662,23 @@ input::placeholder {
 }
 
 
+.same{
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.70),
+            rgba(0, 0, 0, 0.70)
+        ),
+        url("/static/images/bg-3.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  
+    background-color: white;
+
+}
+
 
 
 
@@ -653,23 +686,20 @@ input::placeholder {
 .foto {
     width: 100%;            
     max-width: 1000px;       
-    margin: 20px auto;     
+    margin: 40px auto;     
     border-radius: 8px;      
     overflow: hidden;        
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+   
+    padding-bottom: 50px;
 }
 
 
 .foto img {
     width: 100%;             
     height: auto;           
-    display: block;          
-}
-
-.about-wrapper {
-    padding: 40px 20px;
-    background-color: #f4f7f6;
-    margin-top: 60px;
+    display: block; 
+    border-radius: 20px;         
 }
 
 .container2{
@@ -698,6 +728,7 @@ input::placeholder {
 
 .welcome-section h2{
     font-size: 35px;
+    color: white;
 }
 
 .about-card {
@@ -1827,6 +1858,7 @@ body.dark .facility-card {
   max-width: 1100px;
   margin: 5% auto 10% auto;
   padding: 20px;
+  
 }
 
 .page-title {
@@ -2112,14 +2144,14 @@ body.dark .facility-card {
   padding-left: 12px;
 }
 
-/* List */
+
 .notification-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* Card */
+
 .notification-card {
   display: flex;
   align-items: center;
@@ -2140,7 +2172,7 @@ body.dark .facility-card {
   border-left: 5px solid #2e7d32;
 }
 
-/* Left dot */
+
 .notification-left {
   margin-right: 15px;
 }
@@ -2152,7 +2184,7 @@ body.dark .facility-card {
   border-radius: 50%;
 }
 
-/* Content */
+
 .notification-content {
   flex: 1;
 }
@@ -2188,22 +2220,20 @@ body.dark .facility-card {
   margin-right: 6px;
 }
 
-/* Cube page wrapper */
 #cube-page {
   position: relative;
   width: 100%;
-  height: calc(100vh - 220px); /* adjust if your header is taller */
+  height: calc(100vh - 220px); 
   background: #111;
   overflow: hidden;
 }
 
-/* Three.js container */
 #cube-container {
   width: 100%;
   height: 100%;
 }
 
-/* Buttons */
+
 #cube-ui {
   position: absolute;
   top: 15px;
@@ -2215,4 +2245,104 @@ body.dark .facility-card {
   padding: 8px 14px;
   font-weight: bold;
   margin-right: 6px;
+}
+
+
+
+
+/* ----------------------------------hostel wardens------------------------------ */
+.warden-section {
+    min-height: 100vh;
+    padding: 80px 10%;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("/static/images/bg-3.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title h1 {
+    font-size: 38px;
+    color:rgb(232, 229, 222);
+}
+
+.section-title p {
+    opacity: 0.85;
+    color: rgb(220, 215, 207);
+}
+.warden-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 28px 40px;
+    margin-bottom: 35px;
+
+   
+    background: rgba(118, 134, 117, 0.28);
+
+    /* MORE BLUR */
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.35);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.warden-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.5);
+}
+
+
+.warden-card img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #62af74;
+}
+
+.warden-info h2 {
+    margin-bottom: 5px;
+    color: rgb(179, 174, 174);
+}
+
+
+.warden-info span {
+    color: #92dfa5;
+    font-weight: 500;
+}
+
+@media(max-width: 768px) {
+    .warden-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.warden-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    pointer-events: none;
 }

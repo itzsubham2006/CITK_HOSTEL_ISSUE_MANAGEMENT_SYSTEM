@@ -242,7 +242,7 @@ def analytics():
     total_upvotes = upvote_query.scalar() or 0
 
 
-    # ---------- TOTAL ISSUES ----------
+    # ------------------- TOTAL ISSUES -----------------
     issues_query = Complaint.query
 
     if not is_admin:
@@ -253,7 +253,7 @@ def analytics():
     total_issues = issues_query.count()
 
 
-    # ---------- TOP ISSUES ----------
+    # ---------------------- TOP ISSUES -----------------------
     top_query = Complaint.query.order_by(
         Complaint.upvotes.desc()
     )
@@ -357,7 +357,7 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in {'png','jpg','jpeg'}
            
 
-
+# ---------------upload_profile_pic----------------------
 @students_bp.route('/upload-profile-pic', methods=['POST'])
 @login_required
 def upload_profile_pic():
@@ -384,9 +384,7 @@ def upload_profile_pic():
 
 
 
-
-
-
+# -----------------cube----------------------------
 @students_bp.route('/cube')
 def cube():
     return render_template("cube/index.html")

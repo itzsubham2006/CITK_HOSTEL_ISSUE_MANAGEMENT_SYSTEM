@@ -9,7 +9,7 @@ from flask_login import current_user
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 
-
+# --------------dashboard-----------------
 @admin_bp.route("/dashboard")
 @login_required
 @admin_required
@@ -109,4 +109,7 @@ def delete_announcement(id):
     return redirect(url_for("admin.announcements"))
 
 
-
+# ------------hostel_wardens----------------
+@admin_bp.route("/hostel_wardens")
+def hostel_wardens():
+    return render_template("publics/hostel_wardens.html")

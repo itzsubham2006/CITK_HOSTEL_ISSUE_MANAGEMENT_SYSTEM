@@ -26,7 +26,6 @@ def hostel_diaries():
         )
         db.session.add(diary)
         db.session.commit()
-
         return redirect(url_for('diary.hostel_diaries'))
 
     diaries = HostelDiary.query.order_by(HostelDiary.date_posted.desc()).all()
@@ -66,10 +65,9 @@ def comment_diary(id):
     comment = DiaryComment(
         comment=comment_text,
         user_id=current_user.id,
-        diary_id=id
-    )
-
+        diary_id=id)
+    
     db.session.add(comment)
     db.session.commit()
-
+    
     return redirect(url_for('diary.hostel_diaries'))
