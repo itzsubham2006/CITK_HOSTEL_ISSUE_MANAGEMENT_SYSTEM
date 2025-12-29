@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, render_template, flash, redirect, url_for,
 from flask_login import login_required, current_user
 from sqlalchemy import func
 from ..extensions import db
+from ..models.user import User
 from ..models.complaints import Complaint, ComplaintUpvote, HostelDiary
 from ..forms import ComplaintForm
 import os
@@ -388,3 +389,44 @@ def upload_profile_pic():
 @students_bp.route('/cube')
 def cube():
     return render_template("cube/index.html")
+
+
+
+@students_bp.route('/organizational_structure')
+def organizational_structure():
+    return render_template("publics/organizational_structure.html")
+
+
+# ---------------- HOSTEL ROOMS MAP ----------------
+# routes.py
+@students_bp.route("/hostel_rooms")
+@login_required
+def hostel_rooms():
+
+    if current_user.role == "student":
+        hostel = current_user.hostel
+    else:
+        hostel = request.args.get("hostel", current_user.hostel)
+
+    users = User.query.filter_by(hostel=hostel).all()
+
+    ROOM_CAPACITY = 2
+
+    room_map = {}
+    for u in users:
+        room_map.setdefault(str(u.room_no), []).append({
+            "name": u.username,
+            "email": u.email,
+            "id": u.id
+        })
+
+    is_staff = current_user.role in ["admin", "warden"]
+
+    return render_template(
+        "admin/hostel_rooms.html",
+        hostel=hostel,
+        room_map=room_map,
+        is_staff=is_staff,
+        capacity=ROOM_CAPACITY
+    )
+

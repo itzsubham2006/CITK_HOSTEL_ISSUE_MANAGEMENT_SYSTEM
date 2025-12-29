@@ -77,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="logo-area">
                     <img src="{{ url_for('static', filename ='images/citk_logo.png')}}" alt="CITK Logo" class="main-logo">
                     <div class="title-text">
-                        <h1>केन्द्रीय प्रौद्योगिकी संस्थान कोकराझार</h1>
-                        <h2>CITK HOSTEL ISSUE MANAGEMENT SYSTEM</h2>
+                        <h1>सीआईटीके छात्रावास प्रबंधन प्रणाली</h1>
+                        <h2>CITK HOSTEL MANAGEMENT SYSTEM</h2>
                         <p>Providing a seamless living experience for students.</p>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h4>Hostel Resources</h4>
                     <ul>
                         <li><a href="#">Hostel Rules</a></li>
-                        <li><a href="{{ url_for('students.schedules')}}">Imp Schedules</a></li>
+                        <li><a href="{{ url_for('students.schedules')}}">Schedules</a></li>
                         <li><a href="#">Hostel Bodies</a></li>
                         <li><a href="{{ url_for('admin.hostel_wardens') }}">Hostel Wardens</a></li>
                         
@@ -146,7 +146,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <ul>
                         
                         <li><a href="#">Forms</a></li>
-                        <li><a href="#">Something </a></li>
+                         {% if current_user.role == 'admin' %}
+                        <li><a href="{{url_for('students.hostel_rooms')}}">Hostel Rooms </a></li>
+                        {% endif %}
                         <li><a href="{{url_for('diary.hostel_diaries')}}">Hostel Diaries</a></li>
                         
                         
@@ -157,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h4>Others</h4>
                     <div class="sp-mega-grid">
                         <a href="{{url_for('students.cube')}}">Fun games</a>
-                        <a href="#">Anti Ragging</a>
+                        <a href="{{url_for('students.organizational_structure')}}">Organizational Structure</a>
                         <a href="{{url_for('students.hostel_facility')}}">Hostel Facility</a>
                         <a href="#">Help</a>
 

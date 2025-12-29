@@ -350,7 +350,7 @@ input::placeholder {
 .welcome-section {
     background: white;
     padding: 40px;
-    margin-top: 30px;
+    margin-top: 50px;
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -843,7 +843,7 @@ input::placeholder {
     flex-wrap: wrap;
     padding: 40px 8%;
     gap: 30px;
-    margin-top: 130px;
+    margin-top: 40px;
 }
 
 
@@ -2345,4 +2345,303 @@ body.dark .facility-card {
     border-radius: 20px;
     background: rgba(255,255,255,0.15);
     pointer-events: none;
+}
+
+
+
+
+
+/* ----------------------------------------organizational_structure---------------------------------- */
+.structure{
+    height: 30%;
+    width: 100vw;
+    margin: 50px auto 0px auto;
+}
+
+.structure h1{
+    text-align: center;
+    margin: 10px;
+    font-size: 38px;
+    font-weight: 100;
+    color: #2e7d32;
+}
+
+.structure h1::after {
+    content: "";
+    display: block;
+    width: 20%;
+    height: 3px;
+    background-color: #ff4d4d;
+    margin: 12px auto 0;
+    border-radius: 2px;
+
+}
+.structure_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+}
+
+.structure_img img{
+    width: 100vw;
+   
+}
+
+@media(max-width: 768px){
+    
+.structure h1{
+    font-size: 18px;
+    
+};
+.structure{
+    height: 20vh;
+    width: 100vw;
+}
+}
+
+
+
+
+
+
+/* -----------------------------hostel_rooms----------------------- */
+
+.hostel-map-section {
+  padding: 40px;
+  background: #f6faf6;
+}
+
+.section-title {
+  text-align: center;
+  color: #1b5e20;
+  margin-bottom: 30px;
+}
+
+.hostel-map {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.hostel-node {
+  background: #1b5e20;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  height: fit-content;
+}
+
+/* Floors */
+.floors-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.floor {
+  border-left: 3px solid #1b5e20;
+  padding-left: 20px;
+}
+
+.floor-title {
+  font-weight: bold;
+  color: #1b5e20;
+  margin-bottom: 8px;
+}
+
+.rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Rooms */
+.room {
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+}
+
+.room.empty {
+  background: #d4f7d4;
+  color: #145214;
+}
+
+.room-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+}
+
+.modal-content {
+  background: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+}
+
+
+.add-btn {
+  margin-top: 10px;
+}
+.room.empty {
+  background: #d4f7d4;
+  color: #145214;
+}
+
+.room.occupied {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.room.full {
+  background: #f7d4d4;
+  color: #7a1111;
+}
+
+
+
+
+
+/* ------------------- */
+
+.form-section {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #f7faf7;
+  border-radius: 10px;
+}
+
+.form-section h2 {
+  text-align: center;
+  color: #1b5e20;
+}
+
+.info-box {
+  background: #e8f5e9;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
+.student-form label {
+  display: block;
+  margin-top: 10px;
+}
+
+.student-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+.student-form button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background: #1b5e20;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+
+/* ----------------------------- */
+
+.hostel-selector-section {
+  padding: 40px;
+  background: #f6faf6;
+  text-align: center;
+}
+
+.section-title {
+  color: #1b5e20;
+  margin-bottom: 5px;
+}
+
+.section-subtitle {
+  color: #4e7c50;
+  margin-bottom: 30px;
+}
+
+.hostel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.hostel-card {
+  background: white;
+  border: 2px solid #c8e6c9;
+  padding: 30px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1b5e20;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.hostel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-color: #1b5e20;
+}
+
+.hostel-card h3 {
+  margin-bottom: 12px;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.badge.boys {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+.badge.girls {
+  background: #fce4ec;
+  color: #880e4f;
+}
+
+/* Access denied */
+.access-denied {
+  text-align: center;
+  padding: 60px;
+  color: #b71c1c;
+}
+
+
+
+.hostel-switcher {
+  margin: 15px 0;
+}
+
+.hostel-switcher select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #2e7d32;
+}
+
+#closeModal{
+  font-size: 28px;
+  cursor: pointer;
 }
