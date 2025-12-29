@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CITK Hostel Issue Management System</title>
+    <title>CITK Hostel Management System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}">
 
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
@@ -55,36 +55,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     <header>
-        <div class="top-bar">
-        <div class="container">
+         <div class="top-bar">
+        <div class="top-container">
             <div class="top-left">
                 <span id="typing-text"></span>
                 <span class="cursor"></span>
             </div>
 
             <div class="top-right">
-                <a href="{{ url_for('students.profile') }}"><i class="fa-solid fa-user"></i> My Profile</a>
-                <a href="{{ url_for('auth.logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                <a href="{{ url_for('students.profile') }}">
+                    <i class="fa-solid fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="{{ url_for('auth.logout') }}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </a>
                 <button id="darkToggle" class="dark-btn">🌙</button>
-                
-
             </div>
         </div>
     </div>
 
-        <div class="branding-section">
-            <div class="container">
-                <div class="logo-area">
-                    <img src="{{ url_for('static', filename ='images/citk_logo.png')}}" alt="CITK Logo" class="main-logo">
-                    <div class="title-text">
-                        <h1>सीआईटीके छात्रावास प्रबंधन प्रणाली</h1>
-                        <h2>CITK HOSTEL MANAGEMENT SYSTEM</h2>
-                        <p>Providing a seamless living experience for students.</p>
-                    </div>
-                </div>
-                
+   
+    <div class="branding-section">
+        <div class="branding-container">
+            <img src="{{ url_for('static', filename='images/citk_logo.png') }}"
+                 alt="CITK Logo"
+                 class="main-logo">
+
+            <div class="title-text">
+                <h1>सीआईटीके छात्रावास प्रबंधन प्रणाली</h1>
+                <h2>CITK HOSTEL MANAGEMENT SYSTEM</h2>
+                <p>Deemed to be University under MoE, Govt. of India</p>
             </div>
         </div>
+    </div>
 
         
         <nav class="sp-main-nav">

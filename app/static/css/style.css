@@ -210,15 +210,141 @@ input::placeholder {
 
 
 /*                                      ------------home page--------------------------- */
-.top-left {
-    min-width: 200px;
-    font-weight: 300;
-    color: white;
-    letter-spacing: 1px;
-    font-size: 10px;
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+
+/* ================= TOP BAR ================= */
+
+.top-bar {
     background-color: #1b5e20;
+    color: #fff;
+    font-size: 12px;
+}
+
+.top-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-left {
+    font-size: 11px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.top-right a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dark-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* ================= BRANDING ================= */
+
+.branding-section {
+    background: #fff;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.branding-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.main-logo {
+    width: 70px;
+    height: auto;
+}
+
+.title-text h1 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1b5e20;
+    margin: 0;
+}
+
+.title-text h2 {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 2px 0;
+    color: #000;
+}
+
+.title-text p {
+    font-size: 11px;
+    color: #555;
+    margin: 0;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+    .top-left {
+        display: none; 
+    }
+
+    .branding-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        justify-content: flex-end;
+    }
+
+    .main-logo {
+        width: 60px;
+    }
+
+    .title-text h1 {
+        font-size: 13px;
+    }
+
+    .title-text h2 {
+        font-size: 14px;
+    }
+
+    .top-right span {
+        display: none;
+    }
+
+    .top-container{
+      justify-content: right;
+    }
+    .top-right{
+      margin: 0px;
+    }
 }
 
 
@@ -233,46 +359,6 @@ input::placeholder {
     100% { opacity: 1; }
 }
 
-
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-}
-
-
-.top-bar {
-    background-color: #1b5e20; 
-    color: white;
-    font-size: 12px;
-    padding: 10px 0;   
-}
-.top-right{
-    position: absolute;
-    right: 5px;
-    display: flex;
-    justify-content: center;
-}
-
-.top-right a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: 500;
-}
-
-.branding-section {
-    background-color: white;
-    padding: 20px 0;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .logo-area {
     display: flex;
@@ -290,25 +376,6 @@ input::placeholder {
     width: 50px;
     position: absolute;
     right: 30px;
-}
-
-.title-text h1 {
-    font-size: 20px;
-    color: #2e7d32;
-    font-weight: bold;
-}
-
-.title-text h2 {
-    font-size: 22px;
-    color: #111;
-    letter-spacing: 0.5px;
-    margin: 2px 0;
-    font-family: sans-serif;
-}
-
-.title-text p {
-    font-size: 14px;
-    color: #666;
 }
 
 
@@ -522,7 +589,7 @@ input::placeholder {
 
 
 
-/* ---------------------------------------------------------------------------------------------new2-------------- */
+/* ---------------------------------------------------------new2------------------------------------------------ */
 .sp-mega-left h4,
 .sp-mega-right h4 {
     font-size: 13px;
@@ -538,7 +605,7 @@ input::placeholder {
 
 
 
-/*                                   -----------------------------register_flash_message------------------- */
+/* -----------------------------register_flash_message------------------- */
 
 .flash-container {
     width: 100%;
@@ -561,7 +628,7 @@ input::placeholder {
     border: 1px solid #c3e6cb;
 }
 
-/* -------------Error flash*/
+
 .flash-danger {
     background-color: #f8d7da;
     color: #721c24;
@@ -572,59 +639,47 @@ input::placeholder {
 
 
 /* ---------------------------------homee----------------------------- */
-
-
-
-/* ------------------citk slider--- */
 .collage-slider {
     position: relative;
-    overflow: hidden;  
+    overflow: hidden;
+    padding: 12px 0 20px 0;
 
     background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.60),
-            rgba(0, 0, 0, 0.60)
-        ),
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
         url("/static/images/bg-3.jpg");
-
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    margin: 20px 10px 30px 10px;
-    
-    
 }
+
 
 .collage-track {
     display: flex;
-    width: 200%;
-    animation: scrollCollage 25s linear infinite;
-
+    width: max-content;
+    animation: scrollCollage 30s linear infinite;
+    gap: 10px;
 }
 
 
 .collage {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 180px;
-    gap: 8px;
-    width: 50%;
-    /* height: 90vh; */
-    
+    grid-auto-rows: 190px;
+    gap: 6px;
+    width: 680px;
 }
 
 
 .collage img {
     width: 100%;
-    height: 50vh;
+    height: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.4s ease;
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .collage img:hover {
-    transform: scale(1.05);
+    transform: scale(1.06);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
 
 
@@ -633,31 +688,41 @@ input::placeholder {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0,0,0,0.55);
-    color: white;
-    padding: 12px 22px;
-    border-radius: 25px;
-    font-size: 15px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
     text-align: center;
-    max-width: 90%;
+    letter-spacing: 0.5px;
 }
+
 
 @keyframes scrollCollage {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
 
-
+/* =================== RESPONSIVE =================== */
 @media (max-width: 768px) {
     .collage {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 140px;
-        height: 100%;
+        width: 460px;
+        gap: 5px;
     }
 
     .collage-text {
         font-size: 13px;
-        padding: 10px 16px;
+        padding: 10px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .collage {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 100px;
+        width: 340px;
     }
 }
 
