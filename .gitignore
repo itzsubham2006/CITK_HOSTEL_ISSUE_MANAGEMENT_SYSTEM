@@ -1,8 +1,12 @@
-hackvenv
+# Virtual environment
+hackvenv/
 
-__pycache__
+# Flask instance folder
+instance/
 
-config.py
+# Python cache
+__pycache__/
+*.pyc
 
-
-images
+# Database
+*.db
