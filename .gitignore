@@ -17,3 +17,5 @@ app/static/images/
 
 #complaint_images
 app/static/complaint_images/
+
+app/config.py

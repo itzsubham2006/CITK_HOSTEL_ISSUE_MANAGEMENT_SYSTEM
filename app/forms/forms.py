@@ -7,13 +7,9 @@ from ..models.user import User
 class RegistrationForm(FlaskForm):
 
     email = StringField('Email',validators=[Email(), DataRequired()])
-
     username = StringField('Username', validators=[DataRequired(), Length(min=4, max=30)])
-
     password = PasswordField('Password',validators=[DataRequired(), Length(min=6)])
-
     confirm_password = PasswordField('Confirm Password',validators=[DataRequired(), EqualTo('password')] )
-    
     hostel = SelectField(
         "Hostel",
         choices=[
@@ -27,8 +23,6 @@ class RegistrationForm(FlaskForm):
         validators=[DataRequired()])   
 
     room_no = StringField('Room No',validators=[DataRequired()])
-    
-
     submit = SubmitField('Sign up')
 
    
@@ -39,12 +33,11 @@ class RegistrationForm(FlaskForm):
                 'That username is already taken. Please choose another one.'
             )
             
+            
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError(
-                'That email is already registered. Please choose another one.'
-            )
+            raise ValidationError('That email is already registered. Please choose another one.')
 
 
 class LoginForm(FlaskForm):
@@ -58,7 +51,7 @@ class LoginForm(FlaskForm):
         'Password',
         validators=[DataRequired()]
     )
-
+    
     remember = BooleanField('Remember me')
     submit = SubmitField('Login')
 
