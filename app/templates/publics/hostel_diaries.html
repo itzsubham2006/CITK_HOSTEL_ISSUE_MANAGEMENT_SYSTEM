@@ -9,7 +9,7 @@
   <!-- PAGE TITLE -->
   <h2 class="page-title">🏠 Hostel Diaries</h2>
 
-  <!-- ================= UPLOAD FORM ================= -->
+  <!--  UPLOAD FORM  -->
   <div class="upload-box">
     <form method="POST" enctype="multipart/form-data">
       <input type="file" name="image" required>
@@ -18,7 +18,7 @@
     </form>
   </div>
 
-  <!-- ================= DIARIES GRID ================= -->
+  <!--  DIARIES GRID  -->
   <div class="diary-grid">
 
     {% for diary in diaries %}
@@ -33,13 +33,13 @@
       <!-- USER -->
       <small class="user">— {{ diary.user.username }}</small>
 
-      <!-- ================= LIKE BUTTON ================= -->
+      <!--  LIKE BUTTON  -->
       <button class="like-btn" data-id="{{ diary.id }}">
     ❤️ <span id="like-count-{{ diary.id }}">{{ diary.likes | length }}</span>
 
     </button>>
 
-      <!-- ================= COMMENTS ================= -->
+      <!--  COMMENTS  -->
       <div class="comments">
         {% for comment in diary.comments %}
           <p>

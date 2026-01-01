@@ -430,3 +430,28 @@ def hostel_rooms():
         capacity=ROOM_CAPACITY
     )
 
+
+
+# ------------------anti_ragging-------------------------------------
+@students_bp.route("/anti_ragging")
+def anti_ragging():
+    return render_template("publics/anti_ragging.html")
+
+
+@students_bp.route("/submit_anti_ragging", methods=["POST"])
+def submit_anti_ragging():
+    full_name = request.form.get("full_name")
+    email = request.form.get("email")
+    mobile = request.form.get("mobile")
+    college = request.form.get("college")
+    year = request.form.get("year")
+    complaint = request.form.get("complaint")
+
+    
+    print("---- Anti Ragging Complaint ----")
+    print(full_name, email, mobile, college, year, complaint)
+
+   
+    flash("Your complaint has been submitted successfully. Strict action will be taken.", "success")
+
+    return redirect(url_for("anti_ragging"))

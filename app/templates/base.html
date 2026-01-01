@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h4>Others</h4>
                     <div class="sp-mega-grid">
                         
-                        <a href="#">Anti Ragging</a>
+                        <a href="{{url_for('students.anti_ragging')}}">Anti Ragging</a>
                         <a href="#">Notices</a>
                         <a href="#">Internet</a>
                         <a href="#">Help</a>
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <h4>Important</h4>
                     <ul>
                         
-                        <li><a href="#">Forms</a></li>
+                        <li><a href="https://cit.ac.in/pages-uploads-academic-form">Forms</a></li>
                          {% if current_user.role == 'admin' %}
                         <li><a href="{{url_for('students.hostel_rooms')}}">Hostel Rooms </a></li>
                         {% endif %}
@@ -188,6 +188,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     </header>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     {% block content%}
     <main class="container">
         <section class="welcome-section">
