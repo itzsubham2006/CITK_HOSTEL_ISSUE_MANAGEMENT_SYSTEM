@@ -4,6 +4,7 @@ from ..models.complaints import HostelDiary, DiaryLike, DiaryComment
 from app.extensions import db
 from werkzeug.utils import secure_filename
 import os
+import uuid
 
 diary_bp = Blueprint('diary', __name__)
 
@@ -16,21 +17,24 @@ def hostel_diaries():
         image = request.files['image']
         caption = request.form['caption']
 
-        filename = secure_filename(image.filename)
-        image.save(os.path.join(UPLOAD_FOLDER, filename))
+        if image:
+            ext = image.filename.rsplit('.', 1)[1]
+            unique_filename = f"{uuid.uuid4().hex}.{ext}"
 
-        diary = HostelDiary(
-            image=filename,
-            caption=caption,
-            user_id=current_user.id
-        )
-        db.session.add(diary)
-        db.session.commit()
+            image.save(os.path.join(UPLOAD_FOLDER, unique_filename))
+
+            diary = HostelDiary(
+                image=unique_filename,
+                caption=caption,
+                user_id=current_user.id
+            )
+            db.session.add(diary)
+            db.session.commit()
+
         return redirect(url_for('diary.hostel_diaries'))
 
     diaries = HostelDiary.query.order_by(HostelDiary.date_posted.desc()).all()
     return render_template('publics/hostel_diaries.html', diaries=diaries)
-
 
 
 
@@ -70,4 +74,19 @@ def comment_diary(id):
     db.session.add(comment)
     db.session.commit()
     
+    return redirect(url_for('diary.hostel_diaries'))
+
+
+@diary_bp.route('/delete-diary/<int:id>', methods=['POST'])
+@login_required
+def delete_diary(id):
+    diary = HostelDiary.query.get_or_404(id)
+
+    image_path = os.path.join(UPLOAD_FOLDER, diary.image)
+    if os.path.exists(image_path):
+        os.remove(image_path)
+
+    db.session.delete(diary)
+    db.session.commit()
+
     return redirect(url_for('diary.hostel_diaries'))

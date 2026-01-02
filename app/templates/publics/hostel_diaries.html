@@ -25,7 +25,8 @@
     <div class="diary-card">
 
       <!-- IMAGE -->
-      <img src="{{ url_for('static', filename='uploads/' + diary.image) }}" alt="Hostel Memory">
+      <img src="{{ url_for('static', filename='uploads/' + diary.image) }}" alt="Hostel Memory" class="diary-image"
+  onclick="openImage(this.src)">
 
       <!-- CAPTION -->
       <p class="caption">{{ diary.caption }}</p>
@@ -37,7 +38,7 @@
       <button class="like-btn" data-id="{{ diary.id }}">
     ❤️ <span id="like-count-{{ diary.id }}">{{ diary.likes | length }}</span>
 
-    </button>>
+    </button>
 
       <!--  COMMENTS  -->
       <div class="comments">
@@ -78,6 +79,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+</script>
+
+
+<!-- IMAGE VIEW MODAL -->
+<div id="imageModal" class="image-modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<script>
+function openImage(src) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImg");
+
+  modal.style.display = "block";
+  modalImg.src = src;
+}
+
+document.querySelector(".close").onclick = function () {
+  document.getElementById("imageModal").style.display = "none";
+};
+
+document.getElementById("imageModal").onclick = function (e) {
+  if (e.target.id === "imageModal") {
+    this.style.display = "none";
+  }
+};
 </script>
 
 
