@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{%block title%}CITK HOSTEL MANAGEMENT SYSTEM | Help{%endblock%}
+
+{%block content%}
+<section class="help-section" style="margin-bottom: 50px;">
+    <div class="help-container">
+        <h2>Need Help?</h2>
+        <p class="help-subtitle">
+            We’re here to guide you through the Hostel Management System.
+        </p>
+
+        <div class="help-cards">
+            <div class="help-card">
+                <h4>📌 Reporting an Issue</h4>
+                <p>
+                    Go to <a href="{{url_for('students.report_issue')}}"><strong>Report Issue</strong></a>, select the correct category,
+                    describe the problem clearly, and upload an image if available. If you want to delete your complaints then please visit 
+                    <a href="{{url_for('students.my_complaints')}}"><strong> My Reported Issue</strong></a> to delete, view your complaint(s).
+                </p>
+            </div>
+
+            <div class="help-card">
+                <h4>📄 Track Your Issues</h4>
+                <p>
+                    Visit <a href="{{url_for('students.my_complaints')}}"><strong> My Reported Issue</strong></a> to check the current
+                    status and updates of your submitted complaints.
+                </p>
+            </div>
+
+            <div class="help-card">
+                <h4>🔔 Notifications</h4>
+                <p>
+                    Stay updated with issue progress through the
+                    <a href="{{url_for('students.notification')}}"><strong>Notifications</strong></a> section.
+                </p>
+            </div>
+            <div class="help-card">
+                <h4>Hostel Diary</h4>
+                <p>
+                    To delete your pictures uploaded in the Hostel Diary, please visit 
+                    <a href="{{url_for('students.profile')}}"><strong>My Profile</strong></a> section.
+                </p>
+            </div>
+
+            <div class="help-card">
+                <h4>👤 Profile & Security</h4>
+                <p>
+                    Keep your profile details correct and do not share your
+                    login credentials with anyone.
+                </p>
+            </div>
+        </div>
+
+        <div class="help-note">
+            <strong>Note:</strong> Report only genuine hostel-related issues.
+            Responsible reporting helps maintain a better living environment.
+        </div>
+    </div>
+</section>
+
+
+{%endblock%}

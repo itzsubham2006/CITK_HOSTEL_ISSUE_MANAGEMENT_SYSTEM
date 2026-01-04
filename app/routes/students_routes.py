@@ -1,5 +1,5 @@
 # ==============================importing all_stuffs=====================================================
-from flask import Blueprint, jsonify, render_template, flash, redirect, url_for, request
+from flask import Blueprint, jsonify, render_template, flash, redirect, url_for, request, abort
 from flask_login import login_required, current_user
 from sqlalchemy import func
 from ..extensions import db
@@ -344,6 +344,41 @@ def delete_diary(id):
 
 
 
+
+# ------------------delete_issues---------------------------
+@students_bp.route('/delete-issues')
+@login_required
+def delete_issues():
+    id = request.args.get('id', type=int)
+
+    if not id:
+        abort(404)
+
+    issue = Complaint.query.get_or_404(id)
+
+    if issue.user_id != current_user.id:
+        flash("You are not allowed to delete this complaint.", "danger")
+        return redirect(url_for('students.my_complaints'))
+
+    # delete image if exists
+    if issue.image:
+        image_path = os.path.join(
+            current_app.root_path,
+            'static/complaint_images',
+            issue.image
+        )
+        if os.path.exists(image_path):
+            os.remove(image_path)
+
+    db.session.delete(issue)
+    db.session.commit()
+
+    flash("Complaint deleted successfully", "success")
+    return redirect(url_for('students.my_complaints'))
+
+    
+    
+
 # ==================================profile===============================
 @students_bp.route('/profile')
 @login_required
@@ -455,3 +490,11 @@ def submit_anti_ragging():
     flash("Your complaint has been submitted successfully. Strict action will be taken.", "success")
 
     return redirect(url_for("anti_ragging"))
+
+
+
+
+
+@students_bp.route('/help')
+def help():
+    return render_template('publics/help.html')

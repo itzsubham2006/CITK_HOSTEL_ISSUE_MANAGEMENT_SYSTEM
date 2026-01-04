@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-
+{%block title%}CITK HOSTEL MANAGEMENT SYSTEM | My issues{%endblock%}
 {% block content %}
-<div class="container" style="margin-top: 30px;">
+<div class="container" style="margin:40px auto 100px auto">
     <h2 style="color: #2e7d32; border-bottom: 2px solid #2e7d32; padding-bottom: 10px;">My Reported Issues</h2>
     
     <div style="overflow-x: auto; margin-top: 20px;">
@@ -33,7 +33,12 @@
         </td>
         <td style="padding: 15px; border: 1px solid #ddd;">
             <span class="badge" style="background: #ffa000; color: white; padding: 5px 10px; border-radius: 12px; font-size: 12px;">
-                {{ complaint.status }}
+                {{ complaint.status }} <br>
+                <a href="{{ url_for('students.delete_issues', id=complaint.id )}}"
+                class="delete-btn" style="background: none; font-size:11px"
+                onclick="return confirm('Delete this Issue?')">
+           🗑 Delete
+        </a>
             </span>
         </td>
     </tr>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CITK Hostel Management System</title>
+    <title> {%block title%}CITK HOSTEL MANAGEMENT SYSTEM{%endblock%}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css')}}">
 
     <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <a href="{{url_for('students.cube')}}">Fun games</a>
                         <a href="{{url_for('students.organizational_structure')}}">Organizational Structure</a>
                         <a href="{{url_for('students.hostel_facility')}}">Hostel Facility</a>
-                        <a href="#">Help</a>
+                        <a href="{{url_for('students.help')}}">Help</a>
 
                         
                     </div>
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
-        <div class="flash {{ category }}">{{ message }}</div>
+        <div class="flash {{ category }}" style="background-color:#d7e6d0">{{ message }}!</div>
         {% endfor %}
     {% endif %}
     {% endwith %}
@@ -205,9 +205,9 @@ document.addEventListener("DOMContentLoaded", function () {
     {%endblock%}
     
     
-    
-    
-    
+ 
+    <button id="backToTop" title="Go to top">↑</button>
+
     <footer class="citk-footer">
         <div class="footer-container">
             
@@ -227,11 +227,12 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="footer-links">
             <h4>Quick Links</h4>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Report Issue</a></li>
-                <li><a href="#">My Reported Issue</a></li>
-                <li><a href="#">Hostel Wardens</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="{{url_for('auth.home')}}">Home</a></li>
+                
+                <li><a href="{{url_for('students.my_complaints')}}">My Reported Issue</a></li>
+                <li><a href="{{url_for('admin.hostel_wardens')}}">Hostel Wardens</a></li>
+                <li><a href="{{url_for('students.about')}}">About</a></li>
+                
             </ul>
         </div>
         
@@ -239,7 +240,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="footer-links">
             <h4>Important Links</h4>
             <ul>
-                <li><a href="#">Anti Ragging</a></li>
+                <li><a href="{{url_for('students.anti_ragging')}}">Anti Ragging</a></li>
+                <li><a href="{{url_for('students.report_issue')}}">Report Issue</a></li>
                 <li><a href="#">Hostel Rules</a></li>
                 
             </ul>
@@ -289,6 +291,26 @@ document.addEventListener("DOMContentLoaded", function () {
     play();
 });
 </script>
+
+<script>
+    const backToTopBtn = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+</script>
+
 
 
 {%block scripts%}

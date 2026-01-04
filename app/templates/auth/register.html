@@ -10,7 +10,7 @@
 <body>
 
 
-    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     <div class="flash-container">
       {% for category, message in messages %}
@@ -20,7 +20,7 @@
       {% endfor %}
     </div>
   {% endif %}
-{% endwith %} -->
+{% endwith %}
 
 
 {%block content%}
@@ -100,6 +100,7 @@
                 <li><i class="fa-solid fa-envelope"></i> Valid college email address</li>
                 <li><i class="fa-solid fa-key"></i> Password: Min 6 unique characters</li>
                 <li><i class="fa-solid fa-building-user"></i> Correct hostel & room</li>
+                <li><i class="fa-solid fa-key"></i> Please remember your password to login again.</li>
             </ul>
 
             <p class="info-note">

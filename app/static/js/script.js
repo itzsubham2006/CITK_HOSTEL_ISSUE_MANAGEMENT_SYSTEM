@@ -82,7 +82,6 @@ new Chart(statusCanvas.getContext('2d'), {
     options: {}
 });
 
-
 const categoryCanvas = document.getElementById('categoryChart');
 const categories = JSON.parse(categoryCanvas.dataset.categories);
 const categoryCounts = JSON.parse(categoryCanvas.dataset.counts);
@@ -109,4 +108,5 @@ topIssuesData.forEach(issue => {
     li.innerHTML = `${issue.category} — <strong>${issue.upvotes}</strong> upvotes`;
     topIssuesList.appendChild(li);
 });
+
 

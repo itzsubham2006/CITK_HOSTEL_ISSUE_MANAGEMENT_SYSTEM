@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+{%block title%}CITK HOSTEL MANAGEMENT SYSTEM | Notification{%endblock%}
+
 {% block content %}
 
-<div class="notification-section">
+<div class="notification-section" style="margin-bottom: 50px;">
 
   <h3>🔔 Notifications</h3>
 
@@ -17,7 +19,7 @@
   <div class="notification-list">
 
     {% for n in notifications %}
-    <div class="notification-card {% if not n.is_read %}unread{% endif %}">
+    <div class="notification-card {% if not n.is_read %}unread{% endif %}" style="margin: 20px 10px 10px 0px;">
       
       <div class="notification-left">
         <span class="dot"></span>
