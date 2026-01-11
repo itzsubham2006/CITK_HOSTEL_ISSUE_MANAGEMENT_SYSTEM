@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <header>
          <div class="top-bar">
-        <div class="top-container">
+        <div class="top-container" style="height: 35px;">
             <div class="top-left">
                 <span id="typing-text"></span>
                 <span class="cursor"></span>
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <i class="fa-solid fa-right-from-bracket"></i>
                     <span>Logout</span>
                 </a>
-                <button id="darkToggle" class="dark-btn">🌙</button>
+                
             </div>
         </div>
     </div>
@@ -93,7 +93,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         
         <nav class="sp-main-nav">
+            <div class="nav-header">
+        <button class="mobile-menu-toggle" aria-label="Open Menu">
+            <span class="bar" style="margin: 2px 0px;"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+    </div>
             <ul class="sp-nav-list">
+                <li class="mobile-only close-row">
+            <button class="close-menu">&times; Close</button>
+        </li>
+
             <li><a href="{{ url_for('auth.home') }}">Home</a></li>
 
             {% if current_user.role == 'student' %}
@@ -111,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         <!-- MEGA MENU -->
         <li class="sp-mega-parent">
-            <a href="#">Resources ▾</a>
+            <a href="#" class="mobile-trigger">Resources ▾</a>
 
             <div class="sp-mega-box">
                 <div class="sp-mega-left">
@@ -133,8 +144,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         
                         <a href="{{url_for('students.anti_ragging')}}">Anti Ragging</a>
                         <a href="#">Notices</a>
-                        <a href="#">Internet</a>
-                        <a href="#">Help</a>
 
                         
                     </div>
@@ -143,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </li>
 
         <li class="sp-mega-parent">
-            <a href="#">More▾</a>
+            <a href="#" class="mobile-trigger">More▾</a>
 
             <div class="sp-mega-box">
                 <div class="sp-mega-left">
@@ -163,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="sp-mega-right">
                     <h4>Others</h4>
                     <div class="sp-mega-grid">
-                        <a href="{{url_for('students.cube')}}">Fun games</a>
+                        
                         <a href="{{url_for('students.organizational_structure')}}">Organizational Structure</a>
                         <a href="{{url_for('students.hostel_facility')}}">Hostel Facility</a>
                         <a href="{{url_for('students.help')}}">Help</a>
@@ -313,11 +322,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-{%block scripts%}
+<script>
 
-{%endblock%}
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.querySelector('.mobile-menu-toggle');
+    const closeBtn = document.querySelector('.close-menu');
+    const navList = document.querySelector('.sp-nav-list');
+    const triggers = document.querySelectorAll('.mobile-trigger');
+
+    
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+            navList.classList.add('is-active');
+        });
+    }
+
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            navList.classList.remove('is-active');
+        });
+    }
+
+   
+   
+triggers.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+        if (window.innerWidth <= 992) {
+            e.preventDefault();
+            e.stopPropagation();
+            const parent = this.parentElement;
+            
+            
+            parent.classList.toggle('is-open');
+        }
+    });
+});
+
+
+});
+</script>
+
 
 
 
 </body>
 </html>
+

@@ -9,22 +9,27 @@
   <h2 class="issues-page-title">
     All Issues – {{ hostel }}
   </h2>
+  
 
   <div class="issues-vertical-list">
     {% for c in complaints %}
+    
     <div class="issue-row-card {% if loop.index <= 3 %}top-issue{% endif %}">
 
       
-      <div class="issue-row-index">
+      <!-- <div class="issue-row-index">
         {{ loop.index }}
-      </div>
+      </div> -->
 
       
       <div class="issue-row-content">
 
         <!-- HEADER -->
         <div class="issue-row-header">
-          <span class="issue-row-category">{{ c.category }}</span>
+           <div class="issue-row-index">
+        {{ loop.index }}
+      </div>
+<span class="issue-row-category">{{ c.category }}</span>
 
           {% if current_user.role == 'admin' %}
           <!-- ADMIN STATUS CONTROL -->

@@ -46,17 +46,6 @@ counters.forEach(counter => observer.observe(counter));
 
 
 
-// ------------------------dark-mode_toggle-------------------------
-const toggle = document.getElementById("darkToggle");
-
-toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    toggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
-});
-
-
-
-
 // --------------------------------------analytics------------------------
 document.getElementById('total-issues').innerText = document.getElementById('total-issues').dataset.value;
 document.getElementById('total-upvotes').innerText = document.getElementById('total-upvotes').dataset.value;
@@ -110,3 +99,75 @@ topIssuesData.forEach(issue => {
 });
 
 
+
+
+
+
+
+
+// ----------------------------------------------------------nav responsive----------------------------------
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navList = document.querySelector('.sp-nav-list');
+    const mobileTriggers = document.querySelectorAll('.mobile-trigger');
+
+ 
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navList.classList.toggle('is-active');
+        });
+    }
+
+   
+    mobileTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const parent = this.parentElement;
+            
+            
+            parent.classList.toggle('is-open');
+            
+           
+            document.querySelectorAll('.sp-mega-parent').forEach(item => {
+                if (item !== parent) item.classList.remove('is-open');
+            });
+        });
+    });
+
+    
+    document.addEventListener('click', function(e) {
+        if (navList.classList.contains('is-active') && !navList.contains(e.target) && e.target !== menuToggle) {
+            navList.classList.remove('is-active');
+        }
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const closeBtn = document.querySelector('.close-menu');
+    const navList = document.querySelector('.sp-nav-list');
+    const triggers = document.querySelectorAll('.mobile-trigger');
+
+  
+    menuToggle.addEventListener('click', () => {
+        navList.classList.add('is-active');
+    });
+
+   
+    closeBtn.addEventListener('click', () => {
+        navList.classList.remove('is-active');
+    });
+
+   
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            parent.classList.toggle('is-open');
+        });
+    });
+});
