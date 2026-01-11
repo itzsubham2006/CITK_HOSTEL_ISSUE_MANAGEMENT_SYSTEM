@@ -3012,3 +3012,161 @@ body.dark .facility-card {
 #backToTop:hover {
     background-color: #1b5e20;
 }
+
+
+
+/* ----------------------------------about------------------------- */
+
+.citk-about-page {
+    background-color: #f4f7f4;
+    padding: 60px 0;
+    font-weight: 400;
+}
+
+.citk-about-container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+
+.citk-about-intro {
+    background: #ffffff;
+    padding: 35px;
+    border-left: 6px solid #1f7a3f;
+    border-radius: 12px;
+    margin-bottom: 50px;
+}
+
+.citk-about-title {
+    color: #1f7a3f;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.citk-about-description {
+    font-size: 14px;
+    line-height: 1.7;
+    /* color: #333; */
+}
+
+
+.citk-about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.citk-stat-card {
+    background: #ffffff;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+.citk-stat-card p {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    
+}
+.citk-stat-card h3 {
+    margin: 10px auto;
+    
+}
+
+.citk-stat-icon {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+
+.citk-about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.citk-about-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+}
+.citk-about-card p{
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.citk-about-card h3 {
+    color: #1f7a3f;
+    margin-bottom: 15px;
+}
+
+
+.citk-about-timeline {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+}
+
+.citk-timeline-title {
+    color: #1f7a3f;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.citk-timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.citk-timeline-dot {
+    width: 10px;
+    height: 10px;
+    background: #1f7a3f;
+    border-radius: 50%;
+    margin: 8px 12px 0 0;
+}
+
+
+.citk-about-future {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 12px;
+    border-top: 4px solid #1f7a3f;
+}
+
+.citk-about-future h3 {
+    color: #1f7a3f;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+/* ---------------hostel_body----------------------- */
+.mess-menu-table.hostel_body a{
+    cursor: pointer;    
+    color: black;
+    text-decoration: none;
+}
+.mess-menu-table.hostel_body a:hover{
+    text-decoration: underline;
+}
+
+.menu-note.hostel-body{
+    text-align: center;
+    color: #2e7d32; 
+    font-size: 22px; 
+    font-weight: bold;
+    margin:20px
+}

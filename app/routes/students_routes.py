@@ -426,10 +426,11 @@ def cube():
     return render_template("cube/index.html")
 
 
-
+# ------------------------organizational_structure-----------------------------
 @students_bp.route('/organizational_structure')
 def organizational_structure():
     return render_template("publics/organizational_structure.html")
+
 
 
 # ---------------- HOSTEL ROOMS MAP ----------------
@@ -472,7 +473,7 @@ def hostel_rooms():
 def anti_ragging():
     return render_template("publics/anti_ragging.html")
 
-
+# ---------------submit_anti_ragging---------------------------------
 @students_bp.route("/submit_anti_ragging", methods=["POST"])
 def submit_anti_ragging():
     full_name = request.form.get("full_name")
@@ -494,7 +495,16 @@ def submit_anti_ragging():
 
 
 
-
+# ------------------help------------------------------
 @students_bp.route('/help')
 def help():
     return render_template('publics/help.html')
+
+
+# ------------------internet------------------------------
+
+
+
+@students_bp.route('/hostel_body')
+def hostel_body():
+    return render_template('hostel/hostel_body.html')

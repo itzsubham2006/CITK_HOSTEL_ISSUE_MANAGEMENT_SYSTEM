@@ -4,14 +4,14 @@
 
 {% block content %}
 
-<!---------------- PAGE STYLE ---------------->
+
 
 <div class="diary-page">
 
-  <!-- PAGE TITLE -->
+  
   <h2 class="page-title">🏠 Hostel Diaries</h2>
 
-  <!--  UPLOAD FORM  -->
+  
   <div class="upload-box">
     <form method="POST" enctype="multipart/form-data">
       <input type="file" name="image" required>
@@ -20,29 +20,28 @@
     </form>
   </div>
 
-  <!--  DIARIES GRID  -->
+ 
   <div class="diary-grid">
 
     {% for diary in diaries %}
     <div class="diary-card">
 
-      <!-- IMAGE -->
+      
       <img src="{{ url_for('static', filename='uploads/' + diary.image) }}" alt="Hostel Memory" class="diary-image"
   onclick="openImage(this.src)">
 
-      <!-- CAPTION -->
       <p class="caption">{{ diary.caption }}</p>
 
-      <!-- USER -->
+      
       <small class="user">— {{ diary.user.username }}</small>
 
-      <!--  LIKE BUTTON  -->
+     
       <button class="like-btn" data-id="{{ diary.id }}">
     ❤️ <span id="like-count-{{ diary.id }}">{{ diary.likes | length }}</span>
 
     </button>
 
-      <!--  COMMENTS  -->
+     
       <div class="comments">
         {% for comment in diary.comments %}
           <p>
@@ -54,7 +53,7 @@
         {% endfor %}
       </div>
 
-      <!-- ADD COMMENT -->
+ 
       <form method="POST" action="{{ url_for('diary.comment_diary', id=diary.id) }}" class="comment-form">
         <input type="text" name="comment" placeholder="Write a comment..." required>
         <button type="submit">Post</button>
