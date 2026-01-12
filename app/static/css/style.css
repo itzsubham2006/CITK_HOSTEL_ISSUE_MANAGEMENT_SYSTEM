@@ -1963,24 +1963,10 @@ body.dark .facility-card {
     }
     
 
-   
-    .issue-row-index {
-        position: absolute;
-        
-        left: 15px;
-        background: #2e7d32;
-        color: white;
-        min-width: 25px;
-        height: 25px;
-        font-size: 0.9rem;
-        border-radius: 50%;
-        justify-content: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        margin-top: 35px;
-        margin-right: 5px;
-        
-        display: inline;
+    .issue-row-category{
+        margin-left: 5px;
     }
+   
 
    
     .issue-row-actions {
@@ -2031,13 +2017,13 @@ body.dark .facility-card {
     
     .issue-row-index {
         position: absolute;
-        top: -15px; 
+        top: 23px; 
         left: 15px;
         
         background: #2e7d32; 
         color: white;
-        width: 30px;
-        height: 30px;
+        width: 18px;
+        height: 28px;
         
         display: flex;
         align-items: center;
@@ -2047,6 +2033,7 @@ body.dark .facility-card {
         font-size: 0.9rem;
         font-weight: bold;
         z-index: 10;
+        margin-right: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
