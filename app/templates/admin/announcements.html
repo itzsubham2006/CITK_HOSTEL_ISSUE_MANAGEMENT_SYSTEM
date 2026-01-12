@@ -54,8 +54,6 @@
       <p>{{ a.message }}</p>
 
       <div class="card-actions">
-        <a href="{{ url_for('admin.edit_announcement', id=a.id) }}"
-           class="edit-btn">✏️ Edit</a>
 
         <a href="{{ url_for('admin.delete_announcement', id=a.id) }}"
            class="delete-btn"
