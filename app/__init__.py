@@ -6,10 +6,17 @@ from datetime import timedelta
 from app import models
 from app.models.announcements import Announcement
 import os
+from .routes import auth_bp
+from .routes.students_routes import students_bp
+from .routes.hostel_diary import diary_bp
+from .routes.admin_routes import admin_bp
+from app.routes.chatbot import chatbot_bp
+    
 
 login_manager.session_protection = "strong"
 login_manager.login_view = "auth.login"
 login_manager.login_message_category = "info"
+
 
 
 
@@ -34,12 +41,8 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
-   
-    from .routes import auth_bp
-    from .routes.students_routes import students_bp
-    from .routes.hostel_diary import diary_bp
-    from .routes.admin_routes import admin_bp
-
+ 
+    app.register_blueprint(chatbot_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(students_bp)
     app.register_blueprint(diary_bp)

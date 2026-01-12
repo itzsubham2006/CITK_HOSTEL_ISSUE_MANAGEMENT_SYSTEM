@@ -504,7 +504,32 @@ def help():
 # ------------------internet------------------------------
 
 
-
 @students_bp.route('/hostel_body')
 def hostel_body():
     return render_template('hostel/hostel_body.html')
+
+
+from app.models.user import Feedback
+@students_bp.route('/feedback',methods=['GET', 'POST'])
+def feedback():
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        feedback = request.form.get("feedback")
+        
+        new_feedback = Feedback(username = username, email = email, feedback = feedback)
+        
+        db.session.add(new_feedback)
+        db.session.commit()
+
+        return render_template("publics/thankyou.html", name=username.title())
+
+    return render_template("publics/feedback.html")
+        
+    
+    
+
+@students_bp.route('/thankyou')
+def thankyou():
+    return render_template("publics/thankyou.html")
+

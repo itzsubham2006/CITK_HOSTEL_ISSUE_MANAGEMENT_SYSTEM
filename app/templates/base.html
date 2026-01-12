@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <a href="{{url_for('students.organizational_structure')}}">Organizational Structure</a>
                         <a href="{{url_for('students.hostel_facility')}}">Hostel Facility</a>
                         <a href="{{url_for('students.help')}}">Help</a>
+                        <a href="{{url_for('students.feedback')}}">Send Feedback</a>
 
                         
                     </div>
@@ -190,6 +191,11 @@ document.addEventListener("DOMContentLoaded", function () {
         </li>
 
         <li><a href="{{url_for('students.about')}}">About</a></li>
+        <li class="nav-item"><a href="{{ url_for('chatbot.chatbot_page') }}" class="nav-link">
+    Hostel Bot
+</a>
+</li>
+
         
         
             </ul>
@@ -259,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     <div class="footer-bottom">
-        <p>
+        <p style="line-height: 1.4;">
            This website is developed for training and academic purposes only.
             It is not an official system of Central Institute of Technology, Kokrajhar.
             Official deployment will be considered only after institutional approval.

@@ -17,3 +17,9 @@ class User(db.Model, UserMixin):
 
 
 
+class Feedback(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(20), nullable = False)
+    email = db.Column(db.String(20), nullable = False)
+    feedback = db.Column(db.String(200), nullable = False)
+    

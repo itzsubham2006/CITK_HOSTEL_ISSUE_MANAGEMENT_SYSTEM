@@ -22,3 +22,4 @@ app/config.py
 
 test.py
 
+.env
