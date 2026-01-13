@@ -9,7 +9,12 @@ from flask_login import login_user, current_user, logout_user
 auth_bp = Blueprint("auth", __name__)
 
 # -----------------------register-----------------------------
-@auth_bp.route("/", methods=["GET", "POST"])
+@auth_bp.route("/")
+def home1():
+    return redirect(url_for("auth.register"))
+
+
+@auth_bp.route("/register", methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
