@@ -18,7 +18,7 @@ __pycache__/
 #complaint_images
 app/static/complaint_images/
 
-app/config.py
+
 
 test.py
 
