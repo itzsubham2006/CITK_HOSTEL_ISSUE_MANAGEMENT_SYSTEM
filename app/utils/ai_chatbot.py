@@ -53,10 +53,9 @@ def get_ai_reply(user_message: str) -> str:
         data = response.json()
         return data["choices"][0]["message"]["content"].strip()
     except requests.exceptions.RequestException as e:
-        print(f"[AI REQUEST ERROR] {e}")
+       
         return "⚠️ AI service is temporarily unavailable."
     except KeyError:
         return "⚠️ AI service returned unexpected data."
 
 r = requests.get("https://api.openai.com/v1/models", headers={"Authorization": f"Bearer {API_KEY}"})
-print(r.status_code, r.text)
